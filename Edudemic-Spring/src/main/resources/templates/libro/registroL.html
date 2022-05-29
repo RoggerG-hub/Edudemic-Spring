@@ -20,11 +20,16 @@
 					for="form6Example3">Descripcion</label>
 			</div>
 			
+			
 			<div class="form-outline mb-4">
-				<input type="text" id="form6Example3" class="form-control"
-					name="fPublicacion" th:field="*{fPublicacion}" /> <label class="form-label"
-					for="form6Example3">Fecha De Publicacion</label>
+				<input
+					type="date" id="start" class="form-control" value="2022-07-22"
+					min="1990-01-01" max="2022-12-31" name="fecha" th:field="*{fPublicacion}">
+					<label class="form-label" for="start">Fecha de publicacion</label> 
 			</div>
+			
+			
+			
 			
 			<div class="form-outline mb-4">
 				<input type="text" id="form6Example3" class="form-control"

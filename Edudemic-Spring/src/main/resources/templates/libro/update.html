@@ -5,7 +5,7 @@
 	<th:block th:include="fragments/navbarAdmin"></th:block>
 
 	<div class="container">
-		<form th:action="@{/libros/{id} (id=${libro.id})}" th:object="${libro}" method="POST">
+		<form th:action="@{'/libros/'+ ${libro.id}}" th:object="${libro}" method="POST">
 			<h1>MODIFICAR LIBRO ACADEMICO</h1>
 
 			<div class="form-outline mb-4">

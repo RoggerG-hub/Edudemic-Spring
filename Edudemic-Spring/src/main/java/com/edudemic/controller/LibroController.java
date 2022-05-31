@@ -5,10 +5,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.edudemic.entities.Categoria;
 import com.edudemic.entities.Libro;
@@ -47,9 +50,17 @@ public class LibroController {
 	}
 
 	@PostMapping("/libros")
-	public String registrarLibro(@ModelAttribute("libro") Libro libro) {
-
+	public String registrarLibro(@Validated @ModelAttribute Libro libro,BindingResult result,Model model,SessionStatus status) {
+		try {
+			if(result.hasErrors()) {
+				return "libro/regsistroL";
+			}
 		libroService.saveLibro(libro);
+		status.setComplete();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		return "redirect:/";
 	}
 
@@ -79,5 +90,6 @@ public class LibroController {
 		libroService.updateLibro(existentLibro);
 
 		return "redirect:/";
+		
 	}
 }

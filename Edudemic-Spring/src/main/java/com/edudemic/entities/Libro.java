@@ -1,8 +1,10 @@
 package com.edudemic.entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -20,10 +28,25 @@ public class Libro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotEmpty(message = "Ingrese un titulo")
+	@Column(name = "titulo", nullable = false, length = 70)
 	private String titulo;
-	private String fPublicacion;
+	
+	@Past(message = "Fecha de publicacion no correcta")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_publicacion", nullable = false)
+	private Date fPublicacion;
+	
+	@NotEmpty(message = "Ingrese una descripcion")
+	@Column(name = "descripcion", nullable = false)
 	private String descripcion;
+	
+	@NotEmpty(message = "Ingrese un autor")
+	@Column(name = "autor", nullable = false,length = 70)
 	private String autor;
+	
 	private String enlace;
 
 	@ManyToOne
@@ -35,7 +58,7 @@ public class Libro {
 	@Transient
 	private List<Libro> libros = new ArrayList<>();
 
-	public Libro(String titulo, String fPublicacion, String descripcion, String autor, String enlace) {
+	public Libro(String titulo, Date fPublicacion, String descripcion, String autor, String enlace) {
 		this.titulo = titulo;
 		this.fPublicacion = fPublicacion;
 		this.descripcion = descripcion;
@@ -59,11 +82,11 @@ public class Libro {
 		this.titulo = titulo;
 	}
 
-	public String getfPublicacion() {
+	public Date getfPublicacion() {
 		return fPublicacion;
 	}
 
-	public void setfPublicacion(String fPublicacion) {
+	public void setfPublicacion(Date fPublicacion) {
 		this.fPublicacion = fPublicacion;
 	}
 

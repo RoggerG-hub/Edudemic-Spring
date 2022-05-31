@@ -1,67 +1,48 @@
 package com.edudemic.entities;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.Transient;
 
 
 @Entity
 @Table(name = "libros")
 public class Libro {
+
 	@Id
-	@Column(name = "libro_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name = "titulo", nullable = false)
 	private String titulo;
-
-	@Column(name = "autor", nullable = false)
-	private String autor;
-
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "libro_categoria", joinColumns = { @JoinColumn(name = "libro_id", nullable = false) }, inverseJoinColumns = {
-			@JoinColumn(name = "categoria_id", nullable = false) })
-	
-	
-	
-	private List<Categoria> categorias = new ArrayList<>();
-
-	@Column(name = "Anio",nullable = false)
-	@DateTimeFormat(pattern = "yyyy")
-	private Date fechaPublicacion;
-
-	@Column(name = "descripcion", nullable = false)
+	private String fPublicacion;
 	private String descripcion;
-	
-	@Column(name = "enlace", nullable = false)
+	private String autor;
 	private String enlace;
 
-	public Libro() {}
-	public Libro(Long id, String titulo, String autor, Date fechaPublicacion, String enlace, String descripcion) {
-		super();
-		this.id = id;
+	@ManyToOne
+	@JoinColumn(name = "categoria_id", nullable = false)
+	private Categoria categoria;
+
+	public Libro() {
+	}
+	@Transient
+	private List<Libro> libros = new ArrayList<>();
+
+	public Libro(String titulo, String fPublicacion, String descripcion, String autor, String enlace) {
 		this.titulo = titulo;
+		this.fPublicacion = fPublicacion;
 		this.descripcion = descripcion;
 		this.autor = autor;
-		this.fechaPublicacion = fechaPublicacion;
 		this.enlace = enlace;
-		this.descripcion = descripcion;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -78,28 +59,12 @@ public class Libro {
 		this.titulo = titulo;
 	}
 
-	public String getAutor() {
-		return autor;
+	public String getfPublicacion() {
+		return fPublicacion;
 	}
 
-	public void setAutor(String autor) {
-		this.autor = autor;
-	}
-
-	public List<Categoria> getCategories() {
-		return categorias;
-	}
-
-	public void setCategories(List<Categoria> categories) {
-		this.categorias = categories;
-	}
-
-	public Date getFechaPublicacion() {
-		return fechaPublicacion;
-	}
-
-	public void setFechaPublicacion(Date fechaPublicacion) {
-		this.fechaPublicacion = fechaPublicacion;
+	public void setfPublicacion(String fPublicacion) {
+		this.fPublicacion = fPublicacion;
 	}
 
 	public String getDescripcion() {
@@ -110,6 +75,14 @@ public class Libro {
 		this.descripcion = descripcion;
 	}
 
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
 	public String getEnlace() {
 		return enlace;
 	}
@@ -117,6 +90,20 @@ public class Libro {
 	public void setEnlace(String enlace) {
 		this.enlace = enlace;
 	}
-	
 
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public List<Libro> getLibros() {
+		return libros;
+	}
+
+	public void setLibros(List<Libro> libros) {
+		this.libros = libros;
+	}
 }

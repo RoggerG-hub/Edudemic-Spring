@@ -4,40 +4,40 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.edudemic.repository.LibroRepository;
 import com.edudemic.entities.Libro;
+import com.edudemic.repository.LibroRepository;
 
 @Service
 public class LibroService {
+
 	private LibroRepository libroRepository;
 
-    public LibroService(LibroRepository libroRepository) {
-        this.libroRepository = libroRepository;
-    }
-    
-    public List<Libro> getAllLibros() {
-        return libroRepository.findAll();
-    }
-    public List<Libro> getAllLibrosByTitle() {
-		return libroRepository.findAllSortByTitle();
+	public LibroService(LibroRepository libroRepository) {
+		this.libroRepository = libroRepository;
+
 	}
-    
-    public Libro registrarLibro(Libro libro) {
-        return libroRepository.save(libro);
-    }
 
-    
-    public Libro getLibroById(Long id) {
-        return libroRepository.findById(id).get();
-    }
+	// listar
+	public List<Libro> getAllLibros() {
+		return libroRepository.findAll();
+	}
 
-    
-    public Libro updateStudent(Libro libro) {
-        return libroRepository.save(libro);
-    }
+	// registrar
+	public Libro saveLibro(Libro libro) {
+		return libroRepository.save(libro);
+	}
 
-    
-    public void deleteStudentById(Long id) {
-        libroRepository.deleteById(id);
-    }
+	// modificar
+	public Libro updateLibro(Libro libro) {
+		return libroRepository.save(libro);
+	}
+
+	public Libro getLibroById(Long id) {
+		return libroRepository.findById(id).get();
+	}
+
+	// eliminar
+	public void deleteLibroById(Long id) {
+		libroRepository.deleteById(id);
+	}
 }

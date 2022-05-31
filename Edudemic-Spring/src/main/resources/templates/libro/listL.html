@@ -34,6 +34,12 @@
       <td th:text="${libro.autor}">Otto</td>
       <td th:text="${libro.categoria.nombre}">@mdo</td>
       <td th:text="${libro.enlace}">@mdo</td>
+      <td><a th:href="@{'/registro/libro'}"
+								class="btn btn-primary">Ver</a></td>
+	<td><a th:href="@{'/registro/libro'}"
+								class="btn btn-secondary">Editar</a></td>
+	<td><a th:href="@{'/registro/libro'}"
+								class="btn btn-warning">Eliminar</a></td>
     </tr>
    
   </tbody>

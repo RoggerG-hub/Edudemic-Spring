@@ -26,8 +26,5 @@ public class VideoService {
 		return videoRepository.save(video);
 	}
 	
-	public void eliminarVideo(Long id) 
-	{
-		videoRepository.deleteById(id);
-	}
+	
 }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+	<th:block th:include="fragments/navbar"></th:block>
+
+	<div class="container">
+		
+		<div class="card">
+			<div class="card-header">Listado de libros</div>
+			<div class="card-body">		
+			
+			<form th:action="@{/libros/buscar}" method="post" th:object="${libro}" class="form-inline" >
+					<div class="form-group">
+						<label for="buscar"></label> 
+						<input
+							type="text" class="form-control" id="buscar"
+							th:field="*{titulo}" 
+							required="required"
+							placeholder="Buscar libro"> 
+					</div>
+					
+					<button type="submit" class="btn btn-primary">
+						<i class="fa fa-search" aria-hidden="true"></i> 
+					</button>
+			</form>
+					
+			<table class="table table-striped">
+  			<thead>
+    		<tr>
+      
+		      <th scope="col">Titulo</th>
+		      <th scope="col">Descripcion</th>
+		      <th scope="col">Fecha de Publicacion</th>
+		      <th scope="col">Autor</th>
+		      <th scope="col">Categoria</th>
+		      <th scope="col">Enlace</th>
+		      <th scope="col">Eliminar</th>
+      
+    		</tr>
+  			</thead>
+  		<tbody>
+		      <tr th:each="libro:${libros}">
+		      <td th:text="${libro.titulo}"></td>
+		      <td th:text="${libro.descripcion}"></td>
+		      <td th:text="${libro.fPublicacion}"></td>
+		      <td th:text="${libro.autor}"></td>
+		      <td th:text="${libro.categoria.nombre}"></td>
+		      <td th:text="${libro.enlace}"></td>
+		      
+		      <td><a th:href="@{'/libros/delete/' + ${libro.id}}"
+				class="btn btn-danger">Eliminar</a></td>
+		      </tr>
+   
+ 		</tbody>
+		</table>
+		</div>
+		</div>
+	</div>
+	<th:block th:include="fragments/footer"></th:block>
+	<th:block th:include="fragments/scripts"></th:block>
+
+</body>
+</html>

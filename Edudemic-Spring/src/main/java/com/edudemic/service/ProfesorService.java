@@ -1,5 +1,6 @@
 package com.edudemic.service;
 
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.edudemic.entities.Profesor;
@@ -16,4 +17,10 @@ public class ProfesorService {
 	{
 		return profesorRepository.save(p);
 	}
+	
+	public List<Profesor> listarProfesor() 
+	{
+		return profesorRepository.findAll();
+	}
+	
 }

@@ -16,10 +16,6 @@ public class CursoController {
 	{
 		this.cursoService=cursoService;
 	}
-	@GetMapping("/")
-	public String inicio(){
-		return "inicio";
-	}
 
 	@GetMapping("/registro/curso")
 	public String registrarForm(Model model) 

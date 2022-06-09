@@ -50,13 +50,45 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" th:href="@{/registro/categoria}">Registrar</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Lista</a>
+          <a class="dropdown-item" th:href="@{/lista/categoria}">Mantenimiento</a>
+        </div>
+      </li>
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Revistas </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" th:href="@{/registro/revista}">Registrar</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" th:href="@{/listar/revista}">Lista</a>
         </div>
       </li>
 
-
-
-
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Mentorias </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" th:href="@{/registro/mentoria}">Registrar</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" th:href="@{/listar/revista}">Lista</a>
+        </div>
+      </li>
+<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Libros </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" th:href="@{/registro/libro}">Registrar</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" th:href="@{/listar/libro}">Lista</a>
+					</div></li>
+					      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Videos </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" th:href="@{/registro/video}">Registrar</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" th:href="@{/list/video}">Lista</a>
+        </div>
+      </li>
+      
       </ul>
     </div>
   </div>

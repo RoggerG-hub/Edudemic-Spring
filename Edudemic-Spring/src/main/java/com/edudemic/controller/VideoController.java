@@ -58,4 +58,10 @@ public class VideoController {
         videoService.eliminarVideo(id);
         return "redirect:/list/video";
     }
+    @GetMapping("/list/video/estudiante")
+	public String listarVideosE(Model model) {
+		model.addAttribute("videos",videoService.getAllVideos());
+		
+		return "/video/lista";
+	}
 }

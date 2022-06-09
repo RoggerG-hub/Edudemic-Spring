@@ -20,18 +20,6 @@ public class EstudianteController {
 	public String lista(){
 		return "/estudiante/listaE";
 	}
-	@GetMapping("/landing")
-	public String land(){
-		return "landing_page";
-	}
-	@GetMapping("/nosotros")
-	public String nosotros(){
-		return "/landing/nosotros";
-	}
-	@GetMapping("/admin")
-	public String admin(){
-		return "/admin/admin";
-	}
 	@GetMapping("/registro/estudiante")
 	public String registrarEstudianteForm(Model model) 
 	{

@@ -10,19 +10,15 @@
         <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Libros</a>
+        <a class="nav-link" th:href="@{/libros/lista_estudiante}">Libros</a>
       </li>
-  	
-  	
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Videos </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" th:href="@{/registro/video}">Registrar</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" th:href="@{/list/video}">Lista</a>
-        </div>
+  	<li class="nav-item">
+        <a class="nav-link" th:href="@{/list/video/estudiante}">Videos</a>
       </li>
-      
+  		<li class="nav-item">
+        <a class="nav-link" th:href="@{/listar/revista/estudiante}">Revistas</a>
+      </li>
+
       
         	<li class="nav-item">
         <a class="nav-link" th:href="@{/admin}">Admin</a>

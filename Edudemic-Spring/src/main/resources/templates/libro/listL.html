@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+	<th:block th:include="fragments/navbarAdmin"></th:block>
+
+	<div class="container">
+
+
+		<div class="card">
+			<div class="card-header">Listado de libros</div>
+			<div class="card-body">
+			<table class="table table-striped">
+		
+  <thead>
+    <tr>
+      
+      <th scope="col">Titulo</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Fecha de Publicacion</th>
+      <th scope="col">Autor</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Enlace</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="libro:${libros}">
+      <td th:text="${libro.titulo}">Mark</td>
+      <td th:text="${libro.descripcion}">Otto</td>
+      <td th:text="${libro.fPublicacion}">Otto</td>
+      <td th:text="${libro.autor}">Otto</td>
+      <td th:text="${libro.categoria.nombre}">@mdo</td>
+      <td th:text="${libro.enlace}">@mdo</td>
+      <td><a th:href="@{'/registro/libro'}"
+								class="btn btn-primary">Ver</a></td>
+								
+	<td><a th:href="@{'/libros/edit/'+ ${libro.id}}"
+								class="btn btn-success">Editar</a></td>
+	<td><a th:href="@{'/libros/delete/' + ${libro.id}}"
+				class="btn btn-danger">Eliminar</a></td>
+    </tr>
+   
+  </tbody>
+</table>
+			</div>
+		</div>
+	</div>
+	<th:block th:include="fragments/footer"></th:block>
+	<th:block th:include="fragments/scripts"></th:block>
+
+</body>
+</html>

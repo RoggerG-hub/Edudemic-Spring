@@ -11,25 +11,35 @@ import com.edudemic.repository.LibroRepository;
 public class LibroService {
 
 	private LibroRepository libroRepository;
-	
+
 	public LibroService(LibroRepository libroRepository) {
-		this.libroRepository=libroRepository;
-		
+		this.libroRepository = libroRepository;
+
 	}
-	
-	//listar
-	public List<Libro>getAllLibros(){
+
+	// listar
+	public List<Libro> getAllLibros() {
 		return libroRepository.findAll();
 	}
-	//registrar
+
+	// registrar
 	public Libro saveLibro(Libro libro) {
 		return libroRepository.save(libro);
 	}
-	//eliminar
+
+	// modificar
+	public Libro updateLibro(Libro libro) {
+		return libroRepository.save(libro);
+	}
+
+	public Libro getLibroById(Long id) {
+		return libroRepository.findById(id).get();
+	}
+
+	// eliminar
 	public void deleteLibroById(Long id) {
 		libroRepository.deleteById(id);
 	}
-	//buscar
 	public List<Libro> buscarLibro(String titulo) {
 		return libroRepository.buscarLibroByTitulo(titulo);
 	}

@@ -36,7 +36,7 @@ public class Libro {
 	@Past(message = "Fecha de publicacion no correcta")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "fecha_publicacion", nullable = false)
+	@Column(name = "fPublicacion", nullable = false)
 	private Date fPublicacion;
 	
 	@NotEmpty(message = "Ingrese una descripcion")

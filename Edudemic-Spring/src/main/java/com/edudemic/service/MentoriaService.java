@@ -1,5 +1,7 @@
 package com.edudemic.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.edudemic.entities.Mentoria;
@@ -20,6 +22,9 @@ public class MentoriaService {
 	{
 		return mentoriaRepository.save(m);
 	}
-	
+	public List<Mentoria> listarMentoria() 
+	{
+		return mentoriaRepository.findAll();
+	}
 
 }

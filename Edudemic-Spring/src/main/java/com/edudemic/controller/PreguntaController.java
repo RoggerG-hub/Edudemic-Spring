@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,5 +40,33 @@ public class PreguntaController {
 	{
 		preguntaService.registrarPregunta(pregunta);
 		return "redirect:/";
+	}
+	@PostMapping("/registrar/nuevo/pregunta")
+	public String registrarDoctor(@Validated @ModelAttribute Pregunta pregunta,BindingResult result, Model model) {		
+		int rpta;
+		if(result.hasErrors()) {
+			this.listaRetos= retoService.listarReto();
+
+			model.addAttribute("listaRetos",listaRetos);
+			return "/reto/registroP";
+		}
+
+		rpta=preguntaService.registrarNuevo(pregunta);
+		
+		if(rpta>0) {
+			model.addAttribute("mensaje", "La pregunta ya existe");
+			this.listaRetos= retoService.listarReto();
+
+			model.addAttribute("listaRetos",listaRetos);
+
+			
+		}else {
+			model.addAttribute("mensaje", "Se registro la pregunta");
+			model.addAttribute("pregunta",new Pregunta());
+			this.listaRetos= retoService.listarReto();
+			model.addAttribute("listaRetos",listaRetos);
+		}
+		
+		return "/reto/registroP";
 	}
 }

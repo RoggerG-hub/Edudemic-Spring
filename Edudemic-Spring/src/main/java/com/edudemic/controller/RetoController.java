@@ -31,7 +31,7 @@ public class RetoController {
 	public String registrarForm(Model model) 
 	{
 		Reto reto = new Reto();
-		this.listaMentorias= mentoriaService.listarMentoria();
+		this.listaMentorias= mentoriaService.otraLista();
 		model.addAttribute("reto",reto);
 		model.addAttribute("listaMentorias",listaMentorias);
 		return "/reto/registroR";
@@ -58,5 +58,11 @@ public class RetoController {
 		//enviar solo las opciones de la pregunta
 		return "/reto/preguntasReto";
 	}
-
+	@GetMapping("/lista/reto/nota/{id}")
+	public String listarNotas(@PathVariable Long id,Model model) {
+	
+		model.addAttribute("notaReto",retoService.notasReto(id));
+		return "/reto/notaReto";
+	}
+	
 }

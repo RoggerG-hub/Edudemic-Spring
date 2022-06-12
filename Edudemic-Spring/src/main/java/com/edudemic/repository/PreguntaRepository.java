@@ -9,4 +9,7 @@ import com.edudemic.entities.Pregunta;
 public interface PreguntaRepository extends JpaRepository<Pregunta, Long>{
 	@Query("SELECT p FROM Pregunta p WHERE p.reto.id=?1")
 	List<Pregunta> listaPorReto(Long id);
+	
+	@Query("SELECT count(p) FROM Pregunta p  WHERE p.descripcion=?1")
+	int verificarExistencia(String descripcion);
 }

@@ -25,4 +25,13 @@ public class PreguntaService {
 	{
 		return preguntaRepository.listaPorReto(id);
 	}
+	public int registrarNuevo(Pregunta p) 
+	{
+		int existe = preguntaRepository.verificarExistencia(p.getDescripcion());
+		if(existe ==0) 
+		{
+			preguntaRepository.save(p);
+		}
+		return existe;
+	}
 }

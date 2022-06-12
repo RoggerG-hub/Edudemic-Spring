@@ -24,4 +24,9 @@ public class RetoService {
 	{
 		return retoRepository.findById(id).get();
 	}
+	public List<Reto> notasReto(Long id)
+	{
+		return retoRepository.listaNotas(id);
+	}
+
 }

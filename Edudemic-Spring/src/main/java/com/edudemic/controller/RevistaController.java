@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.edudemic.entities.Categoria;
-import com.edudemic.entities.Libro;
 import com.edudemic.entities.Revista;
 import com.edudemic.service.CategoriaService;
 import com.edudemic.service.RevistaService;
@@ -46,7 +45,12 @@ public class RevistaController {
 		
 		return "/revista/listR";
 	}
-	
+	@GetMapping("/listar/revista/estudiante")
+	public String listarRevistasEstudiante(Model model) {
+		model.addAttribute("revistas",revistaService.listarRevista());
+		
+		return "/revista/lista";
+	}
 	
 	@PostMapping("/revistas")
 	public String registrarLibro(@ModelAttribute("revista")Revista revista) {

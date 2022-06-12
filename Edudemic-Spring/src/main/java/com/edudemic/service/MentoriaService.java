@@ -1,5 +1,8 @@
 package com.edudemic.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.edudemic.entities.Mentoria;
@@ -12,14 +15,43 @@ public class MentoriaService {
 	
 	
 	private MentoriaRepository mentoriaRepository;
-	public MentoriaService(MentoriaRepository mentoriaRepository) 
+	private RetoService retoService;
+	public MentoriaService(MentoriaRepository mentoriaRepository,RetoService retoService) 
 	{
 		this.mentoriaRepository=mentoriaRepository;
+		this.retoService=retoService;
 	}
 	public Mentoria registrarMentoria(Mentoria m) 
 	{
 		return mentoriaRepository.save(m);
 	}
-	
+	public List<Mentoria> listarMentoria() 
+	{
+		return mentoriaRepository.findAll();
+	}
+	public Mentoria mentoriaObjeto(Long id) 
+	{
+		return mentoriaRepository.objetoM(id);
+	}
+	public List<Mentoria> otraLista() 
+	{
+		List<Mentoria> listaM = new ArrayList<>();
+		List<Mentoria> listaO = mentoriaRepository.findAll();
+			for(int j=0;j<retoService.listarReto().size();j++) 
+			{
 
+				if(retoService.listarReto().get(j).getMentoria().getId()!=mentoriaRepository.findAll().get(j).getId()) 
+				{
+
+				}else 
+				{
+					listaM.add(mentoriaRepository.findAll().get(j));
+
+				}
+
+			}
+			listaO.removeAll(listaM);
+		return listaO;
+	}
+	
 }

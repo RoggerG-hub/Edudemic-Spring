@@ -25,4 +25,7 @@ public class CategoriaService {
 	public Categoria buscarPorId(Long id) {
 		return categoriaRepository.findById(id).get();
 	}
+	public void deleteCategoriaById(Long id) {
+		categoriaRepository.deleteById(id);
+	}
 }

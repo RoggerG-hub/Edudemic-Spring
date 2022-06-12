@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.edudemic.entities.Categoria;
 import com.edudemic.entities.Video;
@@ -53,5 +53,15 @@ public class VideoController {
 		return "redirect:/";
 	}
 	
-	
+    @GetMapping("/videos/eliminar/{id}")
+    public String eliminarVideo(@PathVariable Long id) {
+        videoService.eliminarVideo(id);
+        return "redirect:/list/video";
+    }
+    @GetMapping("/list/video/estudiante")
+	public String listarVideosE(Model model) {
+		model.addAttribute("videos",videoService.getAllVideos());
+		
+		return "/video/lista";
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,17 +31,38 @@ public class RetoController {
 	@GetMapping("/registro/reto")
 	public String registrarForm(Model model) 
 	{
+		
 		Reto reto = new Reto();
 		this.listaMentorias= mentoriaService.otraLista();
 		model.addAttribute("reto",reto);
 		model.addAttribute("listaMentorias",listaMentorias);
 		return "/reto/registroR";
 	}
+	@PostMapping("/retos/nuevo")
+	public String registrarRetoNuevo(@ModelAttribute("reto") Reto reto,BindingResult result,Model model) 
+	{
+		if(result.hasErrors()) {
+			this.listaMentorias= mentoriaService.otraLista();
+			model.addAttribute("listaMentorias",listaMentorias);
+			return "/reto/registroR";
+		}else 
+		{
+			retoService.registrarReto(reto);
+			reto = new Reto();
+			this.listaMentorias= mentoriaService.otraLista();
+			model.addAttribute("listaMentorias",listaMentorias);
+			model.addAttribute("mensaje", "Se registro el reto");
+			return "/reto/registroR";
+		}
+
+	}
 	@PostMapping("/retos")
 	public String registrarReto(@ModelAttribute("reto") Reto reto) 
 	{
-		retoService.registrarReto(reto);
-		return "redirect:/";
+		
+			retoService.registrarReto(reto);
+			return "redirect:/";
+		
 	}
 	@GetMapping("/lista/reto")
 	public String listarReto(Model model) {

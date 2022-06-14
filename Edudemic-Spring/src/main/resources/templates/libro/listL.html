@@ -10,9 +10,7 @@
 		<div class="card">
 			<div class="card-header">Listado de libros</div>
 			<div class="card-body">
-			<a class="btn btn-primary">Nuevo</a>
 			<table class="table table-striped">
-			<a class="btn btn-primary">Editar</a>
 		
   <thead>
     <tr>
@@ -39,8 +37,8 @@
 								
 	<td><a th:href="@{'/libros/edit/'+ ${libro.id}}"
 								class="btn btn-success">Editar</a></td>
-	<td><a th:href="@{'/registro/libro'}"
-							class="btn btn-danger">Eliminar</a></td>
+	<td><a th:href="@{'/libros/delete/' + ${libro.id}}"
+				class="btn btn-danger">Eliminar</a></td>
     </tr>
    
   </tbody>

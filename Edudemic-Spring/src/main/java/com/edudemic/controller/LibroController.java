@@ -50,17 +50,20 @@ public class LibroController {
 	}
 
 	@PostMapping("/libros")
-	public String registrarLibro(@Validated @ModelAttribute Libro libro,BindingResult result,Model model,SessionStatus status) {
+	public String registrarLibro(@Validated @ModelAttribute Libro libro, BindingResult result, Model model,
+			SessionStatus status) {
 		try {
-			if(result.hasErrors()) {
-				return "libro/regsistroL";
+			if (result.hasErrors()) {
+				model.addAttribute("listaCategorias", listaCategorias);
+
+				return "libro/registroL";
 			}
-		libroService.saveLibro(libro);
-		status.setComplete();
-		}catch (Exception e) {
+			libroService.saveLibro(libro);
+			status.setComplete();
+		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		return "redirect:/";
 	}
 
@@ -90,6 +93,32 @@ public class LibroController {
 		libroService.updateLibro(existentLibro);
 
 		return "redirect:/";
-		
+
 	}
+
+	@GetMapping("/lista/libro/estudiante")
+	public String showAllLibros(Model model) {
+		Libro libro = new Libro();
+		model.addAttribute("libro", libro);
+		model.addAttribute("libros", libroService.getAllLibros());
+		return "libro/lista";
+	}
+
+	@GetMapping("/libros/delete/{id}")
+	public String deleteLibro(@PathVariable Long id) {
+		libroService.deleteLibroById(id);
+		return "redirect:/";
+	}
+
+	@PostMapping("/libros/buscar")
+	public String buscarTituloLibro(Model model, @ModelAttribute Libro libro) {
+		try {
+			model.addAttribute("libros", libroService.buscarLibro(libro.getTitulo()));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		return "libro/lista";
+	}
+
 }

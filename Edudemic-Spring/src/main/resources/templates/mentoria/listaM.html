@@ -25,7 +25,11 @@
 							<td th:text="${mentoria.descripcion}">Mark</td>
 							<td th:text="${mentoria.profesor.nombres}">@mdo</td>
 							<td><a th:href="@{'/lista/reto/nota/'+ ${mentoria.id}}"
-								class="btn btn-success">Ver</a></td>
+								class="btn btn-success">Ver</a>
+							</td>
+							<td><a th:href="@{/materialAcademico/lista}"
+								class="btn btn-success">Añadir Material</a>
+							</td>
 						</tr>
 
 					</tbody>

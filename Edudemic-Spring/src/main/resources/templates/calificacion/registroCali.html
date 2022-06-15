@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include ="fragments/head"></th:block>
+<body>
+	<th:block th:include="fragments/navbarAdmin"></th:block>
+
+
+	<div class="container">
+	<form th:object="${'libro'}">
+			<h1>Detalles del libro</h1>	
+  
+  		<div class="card">
+			<div class="card-header">Datos del Libro</div>
+			<div class="card-body">
+				<table class="table table-striped">
+				
+				
+                  <tr>
+                  <th> id </th>
+                  <td th:text="${libro.id} ">	Mark</td>
+                  </tr>
+
+				  <tr>
+                  <th> Profesor </th>
+                  <td th:text="${libro.autor}">Mark</td>
+                  </tr>
+                  
+                  <tr>
+                  <th> Curso </th>
+                  <td th:text="${libro.descripcion}">Mark</td>
+                  </tr>
+                  
+					
+				<tr>
+                  <th> Fecha </th>
+                  <td th:text="${libro.fPublicacion}">Mark</td>
+                  </tr>
+                  
+                  <tr>
+                  <th> Hora </th>
+                  <td th:text="${libro.titulo}">Mark</td>
+                  </tr>
+					
+					 <tr>
+                  <th> Descripcion </th>
+                  <td th:text="${libro.enlace}">Mark</td>
+                  </tr>
+                  	
+				</table>
+			</div>
+		</div>
+  		
+  		<br></br>
+  	 
+  		
+  		<br></br>
+ 
+    
+    
+    <p><a th:href="@{'/registro/calificacion/'+ ${libro.id}}"
+								class="btn btn-success">Calificar</a></p>
+
+
+			<br></br>
+		</form>
+	
+	
+	
+	
+	
+    
+    
+--<th:block th:include ="fragments/footer"></th:block>
+    <th:block th:include ="fragments/scripts"></th:block>	
+	
+</body>
+</html>

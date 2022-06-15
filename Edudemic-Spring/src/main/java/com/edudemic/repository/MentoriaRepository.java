@@ -13,4 +13,5 @@ public interface MentoriaRepository extends JpaRepository<Mentoria, Long> {
 	
 	@Query("SELECT m FROM Mentoria m WHERE m.id=?1")
 	Mentoria objetoM(Long id);
+
 }

@@ -1,6 +1,7 @@
 package com.edudemic.entities;
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,13 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name="retos")
 public class Reto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotEmpty(message = "Debe ingresar nombre del reto*")
+	@Column(name = "nombre", nullable = false, length = 45)
 	private String nombre;
+	@Column(name = "fecha_limite", nullable = false)
 	private Date fechaLimite;
 	private double nota;
 	@ManyToOne

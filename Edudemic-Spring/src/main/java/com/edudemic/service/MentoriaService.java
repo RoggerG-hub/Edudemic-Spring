@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.edudemic.entities.Inscripcion;
 import com.edudemic.entities.Mentoria;
 
 import com.edudemic.repository.MentoriaRepository;
@@ -32,6 +33,10 @@ public class MentoriaService {
 	public Mentoria mentoriaObjeto(Long id) 
 	{
 		return mentoriaRepository.objetoM(id);
+	}
+	
+	public Mentoria getMentoriaById(Long id) {
+		return mentoriaRepository.findById(id).get();
 	}
 	public List<Mentoria> otraLista() 
 	{

@@ -121,4 +121,16 @@ public class LibroController {
 		return "libro/lista";
 	}
 
+	
+	@GetMapping("/libros/detalle/{id}")
+	public String vertLibroForm2(@PathVariable Long id, Model model) {
+		Libro st = libroService.getLibroById(id);
+
+		model.addAttribute("libro", st);
+
+		return "/calificacion/registroCali";
+	}
+	
+	
+	
 }

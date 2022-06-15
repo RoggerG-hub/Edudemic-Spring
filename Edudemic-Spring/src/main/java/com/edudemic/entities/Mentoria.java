@@ -13,8 +13,6 @@ public class Mentoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descripcion;
-	
-	
 	public Long getId() {
 		return id;
 	}
@@ -58,7 +56,6 @@ public class Mentoria {
 	
 	private String horaI;
 	private String horaF;
-
 	
 	
 }

@@ -5,7 +5,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="inscripciones")
@@ -14,10 +13,10 @@ public class Inscripcion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
-	@JoinColumn(name = "mentoria_id", nullable=false)
+	@JoinColumn(name = "mentoria_id", nullable = false)
 	private Mentoria mentoria;
 	@ManyToOne
-	@JoinColumn(name = "estudiante_id", nullable=false)
+	@JoinColumn(name = "estudiante_id", nullable = false)
 	private Estudiante estudiante;
 	public Inscripcion() {
 		

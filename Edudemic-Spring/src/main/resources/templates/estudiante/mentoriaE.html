@@ -9,24 +9,24 @@
 	<div class="container">
 <br></br>
 		<div class="card">
-			<div class="card-header">Estudiantes registrados en Edudemic</div>
+			<div class="card-header">Detalle de la mentoria</div>
 			<div class="card-body">
 				<table class="table table-striped">
 					<thead>
 						<tr>
 
-							<th scope="col">Nombre</th>
-							<th scope="col">Apellidos</th>
-							<th scope="col">DNI</th>
+							<th scope="col">Descripción</th>
+							<th scope="col">Profesor</th>
+							<th scope="col">Nota de su reto</th>
+
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="estudiante:${estudiantes}">
-							<td th:text="${estudiante.nombres}">Mark</td>
-							<td th:text="${estudiante.apellidos}">@mdo</td>
-							<td th:text="${estudiante.dni}">@mdo</td>
-
-
+						<tr th:each="mentoria:${mentoriaE}">
+							<td th:text="${mentoria.descripcion}">Mark</td>
+							<td th:text="${mentoria.profesor.nombres}">@mdo</td>
+							<td><a th:href="@{'/lista/reto/nota/'+ ${mentoria.id}}"
+								class="btn btn-success">Ver nota</a></td>
 						</tr>
 
 					</tbody>

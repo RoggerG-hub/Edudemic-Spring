@@ -9,7 +9,7 @@
 	<div class="container">
 <br></br>
 		<div class="card">
-			<div class="card-header">Estudiantes registrados en Edudemic</div>
+			<div class="card-header">Estudiantes</div>
 			<div class="card-body">
 				<table class="table table-striped">
 					<thead>
@@ -18,6 +18,7 @@
 							<th scope="col">Nombre</th>
 							<th scope="col">Apellidos</th>
 							<th scope="col">DNI</th>
+							<th scope="col">Mentorias</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -25,7 +26,8 @@
 							<td th:text="${estudiante.nombres}">Mark</td>
 							<td th:text="${estudiante.apellidos}">@mdo</td>
 							<td th:text="${estudiante.dni}">@mdo</td>
-
+							<td><a th:href="@{'/lista/inscripcion/estudiante/'+ ${estudiante.id}}"
+								class="btn btn-success">Ver</a></td>
 
 						</tr>
 

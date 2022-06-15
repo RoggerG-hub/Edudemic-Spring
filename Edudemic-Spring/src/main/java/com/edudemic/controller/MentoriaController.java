@@ -7,14 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
 import com.edudemic.entities.Profesor;
-import com.edudemic.entities.Curso;
 import com.edudemic.entities.Mentoria;
 import com.edudemic.service.ProfesorService;
-import com.edudemic.service.CursoService;
 import com.edudemic.service.MentoriaService;
 
 @Controller
@@ -49,7 +48,39 @@ public class MentoriaController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("/listar/mentoria")
+	public String listaMentoria(Model model) 
+	{
+
+		model.addAttribute("mentorias",mentoriaService.listarMentoria());
+		return "/mentoria/listaM";
 	
+	}
+	@GetMapping("/mentoria/estudiante/{id}")
+	public String objetoMentoria(@PathVariable Long id,Model model) {
 	
+		model.addAttribute("mentoriaE",mentoriaService.mentoriaObjeto(id));
+		return "/estudiante/mentoriaE";
+	}
+	
+	@GetMapping("/listar/mentoria/estudiante")
+	public String listaHorario(Model model) 
+	{
+		Mentoria mentoria = new Mentoria();
+		model.addAttribute("mentoria", mentoria);
+		model.addAttribute("mentorias", mentoriaService.listarMentoria());
+		return "/mentoria/listaH";
+	}
+	
+	@PostMapping("/mentorias/buscar")
+	public String buscarTituloLibro(Model model, @ModelAttribute Mentoria mentoria) {
+		try {
+			model.addAttribute("mentorias", mentoriaService.buscarMentoria(mentoria.getFecha()));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}		
+		
+		return "mentoria/listaH";
+	}
 	
 }

@@ -18,8 +18,31 @@ public class EstudianteService {
 	{
 		return estudianteRepository.findAll();
 	}
-	public Estudiante registrarEstudiante(Estudiante e) 
+	public int registrarEstudiante(Estudiante e) 
 	{
-		return estudianteRepository.save(e);
+		int existeEstudiante=estudianteRepository.verificarExistenciaEstudiante(e.getDni());
+		if(existeEstudiante==0)
+			estudianteRepository.save(e);
+
+		return existeEstudiante;
 	}
+	
+	public void EditarEstudiante(Estudiante e) 
+	{
+		estudianteRepository.save(e);
+	}
+	
+	public int modificarEstudiante(Estudiante e) 
+	{
+		int existeEstudiante=estudianteRepository.verificarExistenciaEstudiante(e.getDni());
+		if(existeEstudiante==0)
+			estudianteRepository.save(e);
+
+		return existeEstudiante;
+	}
+	public Estudiante buscarEstudiantePorId(long id){
+		Estudiante estudiante=estudianteRepository.buscarEstudiantePorId(id);
+		return estudiante;
+	}
+	
 }

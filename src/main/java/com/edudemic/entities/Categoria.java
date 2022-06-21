@@ -23,7 +23,8 @@ public class Categoria {
 	@Column(name = "descripción", nullable = false, length = 70)
 	private String descripcion;
 
-	public Categoria() {
+	public Categoria() {	
+		
 	}
 
 	public Categoria(Long id, String nombre, String descripcion) {

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<th:block th:include ="fragments/head"></th:block>
+<body>
+	<th:block th:include ="fragments/navbar"></th:block>
+
+	<div class="container">
+	<br></br>
+	<div class="card card-body">
+	<span th:if="${session.usuario !=null}">Bienvenido/a <span class="font-italic" th:text="${session.usuario.nombres}"></span></span>
+	<form th:action="@{/logout}" method= "POST"><button type="submit" class="btn btn-primary mt-3">Salir</button></form>
+	</div>
+	
+	
+	
+	
+	
+	</div>
+	<th:block th:include ="fragments/footer"></th:block>
+	<th:block th:include ="fragments/scripts"></th:block>
+	
+</body>
+</html>

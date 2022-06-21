@@ -31,8 +31,9 @@
 
 			<!-- Text input -->
 			<div class="form-outline mb-4">
-				<input type="text" id="form6Example3" class="form-control" name="edad" th:field="*{edad}" /> <label
-					class="form-label" for="form6Example3">Edad</label>
+				<input type="text" id="form6Example3" class="form-control"
+					name="edad" th:field="*{edad}" /> <label class="form-label"
+					for="form6Example3">Edad</label>
 			</div>
 
 			<!-- Text input -->
@@ -41,28 +42,24 @@
 					name="dni" th:field="*{dni}" /> <label class="form-label"
 					for="form6Example4">Dni</label>
 			</div>
-
-			<!-- Email input -->
+			
 			<div class="form-outline mb-4">
-				<input type="email" id="form6Example5" class="form-control"
-					name="correo" th:field="*{correo}" /> <label class="form-label"
-					for="form6Example5">Email</label>
+  				<input type="password" id="typePassword" class="form-control" th:field="*{password}"/>
+ 				 <label class="form-label" for="typePassword">Password</label>
 			</div>
-			<!-- Number input -->
 			<div class="form-outline mb-4">
-				<input type="number" id="form6Example6" class="form-control"
-					name="telefono" th:field="*{telefono}" /> <label
-					class="form-label" for="form6Example6">Telefono</label>
+				<input type="text" id="form6Example4" class="form-control"
+					name="dni" th:field="*{grado}" /> <label class="form-label"
+					for="form6Example4">Grado</label>
 			</div>
-
 			<div class="form-outline mb-4">
-				<input
-					type="date" id="start" class="form-control" value="2022-07-22"
-					min="1990-01-01" max="2022-12-31" name="fecha" th:field="*{fecha}">
-					<label class="form-label" for="start">Fecha</label> 
+				<label class="form-label" for="lista">Rol</label> 
+				<select
+							class="custom-select custom-select-sm " name="rol" id="lista">
+							<option th:each="rol :${roles}" th:value="${rol.id}"
+							th:text="${rol.authority}" />
+							</select>
 			</div>
-
-
 			<!-- Submit button -->
 			<button type="submit" class="btn btn-primary btn-block mb-4">Registrar</button>
 

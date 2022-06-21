@@ -8,13 +8,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.edudemic.entities.Estudiante;
 import com.edudemic.service.EstudianteService;
+import com.edudemic.service.RolService;
 
 @Controller
 public class EstudianteController {
 	private EstudianteService estudianteService;
-	public EstudianteController(EstudianteService estudianteService) 
+	private RolService rolService;
+
+	public EstudianteController(EstudianteService estudianteService,RolService rolService) 
 	{
 		this.estudianteService = estudianteService;
+		this.rolService=rolService;
 	}
 	@GetMapping("/lista")
 	public String lista(){
@@ -25,6 +29,8 @@ public class EstudianteController {
 	{
 		Estudiante estudiante = new Estudiante();
 		model.addAttribute("estudiante",estudiante);
+		model.addAttribute("roles", rolService.listarRoles());
+
 		return "/estudiante/registroE";
 	}
 	@PostMapping("/estudiantes")

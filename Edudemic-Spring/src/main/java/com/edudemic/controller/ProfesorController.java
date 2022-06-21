@@ -13,17 +13,21 @@ import com.edudemic.entities.Curso;
 import com.edudemic.entities.Profesor;
 import com.edudemic.service.CursoService;
 import com.edudemic.service.ProfesorService;
+import com.edudemic.service.RolService;
 
 
 @Controller
 public class ProfesorController {
 	private ProfesorService profesorService;
 	private CursoService cursoService;
+	private RolService rolService;
+
 	private List<Curso> listaCursos =new ArrayList<>();
-	public ProfesorController(ProfesorService profesorService,CursoService cursoService) 
+	public ProfesorController(ProfesorService profesorService,CursoService cursoService,RolService rolService) 
 	{
 		this.profesorService=profesorService;
 		this.cursoService = cursoService;
+		this.rolService = rolService;
 	}
 	
 	@GetMapping("/registro/profesor")
@@ -34,6 +38,7 @@ public class ProfesorController {
 
 		model.addAttribute("profesor",profesor);
 		model.addAttribute("listaCursos",listaCursos);
+		model.addAttribute("roles", rolService.listarRoles());
 		return "/profesor/registroP";
 	}
 	@PostMapping("/profesores")

@@ -109,7 +109,14 @@
         </div>
       </li>
       
+        <li class="nav-item active">
+      	        <a class="nav-link font-italic">Bienvenido <span class="font-italic" th:text="${session.usuario.nombres}"></span></a>
+      </li>
       </ul>
+      
+
     </div>
+          	<form th:action="@{/logout}" method= "POST"><button type="submit" class="btn btn-danger mt-3">Salir</button></form>
+    
   </div>
 </nav>

@@ -15,6 +15,7 @@ import com.edudemic.service.EstudianteService;
 @Controller
 public class EstudianteController {
 	private EstudianteService estudianteService;
+	private Estudiante estudianteSeleccionado;
 	public EstudianteController(EstudianteService estudianteService) 
 	{
 		this.estudianteService = estudianteService;
@@ -43,11 +44,12 @@ public class EstudianteController {
 	}
 	
 	@GetMapping("/edit/{id}")
-	public String editEstudianteForm( @PathVariable("id") long id, Estudiante estudiante,Model model) {
+	public String editEstudianteForm( @PathVariable("id") Long id, Estudiante estudiante,Model model) {
  
 		try {
 			estudiante = estudianteService.buscarEstudiantePorId(id);
 			model.addAttribute("estudiante", estudiante);
+			estudianteSeleccionado=estudianteService.buscarEstudiantePorId(id);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -60,8 +62,18 @@ public class EstudianteController {
 	public String guardarEstudiante(@Validated @ModelAttribute("estudiante") Estudiante estudiante,BindingResult result,Model model) {
 
 		try {
-				estudianteService.EditarEstudiante(estudiante);
-    			model.addAttribute("estudiante",estudiante);
+    			estudianteSeleccionado.setId(estudiante.getId());
+    			estudianteSeleccionado.setApellidos(estudiante.getApellidos());
+    			estudianteSeleccionado.setContraseña(estudiante.getContraseña());
+    			estudianteSeleccionado.setCorreo(estudiante.getCorreo());
+    			estudianteSeleccionado.setDni(estudiante.getDni());
+    			estudianteSeleccionado.setEdad(estudiante.getEdad());
+    			estudianteSeleccionado.setFecha(estudiante.getFecha());
+    			estudianteSeleccionado.setNombres(estudiante.getNombres());
+    			estudianteSeleccionado.setTelefono(estudiante.getTelefono());
+
+    			estudianteService.EditarEstudiante(estudianteSeleccionado);
+			    model.addAttribute("estudiante",estudianteSeleccionado);
     			model.addAttribute("mensaje", "El estudiante se modificó correctamente");
     			
         }catch (Exception e) {
@@ -70,19 +82,6 @@ public class EstudianteController {
 
 		}
 		
-		
-		/*
-		rpta=doctorService.registrarDoctor(doctor);
-		
-		if(rpta>0) {
-			model.addAttribute("mensaje", "El numero de dni ya existe");
-			model.addAttribute("ciudades", ciudadService.listarCiudades());
-			
-		}else {
-			model.addAttribute("mensaje", "Se registro nuevo doctor");
-			model.addAttribute("doctor",new Doctor());
-			model.addAttribute("ciudades", ciudadService.listarCiudades());			
-		}*/
 		return "estudiante/editarE";
 	}	
 	

@@ -27,9 +27,13 @@ public class EstudianteService {
 		return existeEstudiante;
 	}
 	
-	public void EditarEstudiante(Estudiante e) 
+	public Estudiante EditarEstudiante(Estudiante e) 
 	{
-		estudianteRepository.save(e);
+		return estudianteRepository.save(e);
+	}
+	
+	public Estudiante getEstudianteById(Long id) {
+		return estudianteRepository.findById(id).get();
 	}
 	
 	public int modificarEstudiante(Estudiante e) 

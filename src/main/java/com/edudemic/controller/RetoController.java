@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.edudemic.entities.Mentoria;
 import com.edudemic.entities.Reto;
+import com.edudemic.entities.Profesor;
 import com.edudemic.service.MentoriaService;
 import com.edudemic.service.PreguntaService;
 import com.edudemic.service.RetoService;
+
 @Controller
 public class RetoController {
 	private RetoService retoService;
@@ -87,4 +89,11 @@ public class RetoController {
 		return "/reto/notaReto";
 	}
 	
+	@GetMapping("/listaRxProfesor/reto")
+	public String listarRetoxProfesor(Model model) {
+		model.addAttribute("retos",retoService.listarReto());
+		return "/reto/listaRxProfesor";
+	}
+	
+		
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.edudemic.entities.Reto;
 import com.edudemic.repository.RetoRepository;
+
 @Service
 public class RetoService {
 	private RetoRepository retoRepository;
@@ -27,6 +28,10 @@ public class RetoService {
 	public List<Reto> notasReto(Long id)
 	{
 		return retoRepository.listaNotas(id);
+	}
+	public List<Reto> buscarPorProfesor(Long id){
+		List<Reto> retos=retoRepository.listaPorProfesor(id);		
+		return retos;
 	}
 
 }

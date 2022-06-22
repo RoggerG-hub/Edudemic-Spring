@@ -7,8 +7,9 @@
 	<th:block th:include="fragments/navbarAdmin"></th:block>
 
 	<div class="container">
-		<form th:object="${estudiante}"  th:action="@{/guardar}" 
-					th:method="post">
+
+		<form th:action="@{/guardar}" th:object="${estudiante}"
+					th:method="get">
 			<br></br>
 			<h1 class="display-3">Editar estudiante</h1>
 			

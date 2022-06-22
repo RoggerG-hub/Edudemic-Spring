@@ -54,17 +54,35 @@ public class EstudianteController {
 			e.printStackTrace();
 		}
 
-		return "estudiante/editarE";
+		return "/estudiante/editarE"; 
 	}
 	@GetMapping("/guardar")
 	public String guardarEstudiante(@Validated @ModelAttribute("estudiante") Estudiante estudiante,BindingResult result,Model model) {
-	//	Estudiante estudianteActualizado=estudianteService.EditarEstudiante(estudiante);
-		if(result.hasErrors()) {
-			estudianteService.EditarEstudiante(estudiante);
-			//model.addAttribute("doctor",estudiante);
-			model.addAttribute("estudiante",new Estudiante());
+
+		try {
+				estudianteService.EditarEstudiante(estudiante);
+    			model.addAttribute("estudiante",estudiante);
+    			model.addAttribute("mensaje", "El estudiante se modificó correctamente");
+    			
+        }catch (Exception e) {
+			System.out.println(e.getMessage());
+			model.addAttribute("mensaje", "El estudiante no se modificó correctamente");
+
 		}
 		
+		
+		/*
+		rpta=doctorService.registrarDoctor(doctor);
+		
+		if(rpta>0) {
+			model.addAttribute("mensaje", "El numero de dni ya existe");
+			model.addAttribute("ciudades", ciudadService.listarCiudades());
+			
+		}else {
+			model.addAttribute("mensaje", "Se registro nuevo doctor");
+			model.addAttribute("doctor",new Doctor());
+			model.addAttribute("ciudades", ciudadService.listarCiudades());			
+		}*/
 		return "estudiante/editarE";
 	}	
 	

@@ -26,13 +26,16 @@
 						
 						<td><a th:href="@{'/registro/comentario'}"
 								class="btn btn-primary">Responder</a></td>
+								
+						<td><a th:href="@{'/comentarios/delete/' + ${comentario.id}}"
+						class="btn btn-danger">Eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
 
-	</div>
+	
 	<th:block th:include="fragments/scripts"></th:block>
 	<th:block th:include="fragments/footer"></th:block>
 

@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -51,15 +52,28 @@ public class ForoController {
 	@PostMapping("/foros")
 	public String registrarForo(@Validated @ModelAttribute Foro foro, BindingResult result, Model model,
 			SessionStatus status) {
+			String titulo=foro.getTitulo();
 		try {
 			if (result.hasErrors()) {
 				model.addAttribute("listaEstudiantes", listaEstudiantes);
 
 				return "foro/registroF";
 			}
+			if(titulo.contains("drogas") || titulo.contains("Fiesta") || titulo.contains("fiesta") || titulo.contains("alcohol")
+			|| titulo.contains("sexo") || titulo.contains("relaciones")	|| titulo.contains("estupidos")
+					) {
+				model.addAttribute("mensaje", "No se puede colocar ese titulo porque es inapropiado");
+				return "foro/registroF";
+			}
+			if(titulo.contains("tarea")|| titulo.contains("reto")) {
+						model.addAttribute("mensaje2", "No puede agregar este foro porque esta intentando copiar una tarea");
+						return "foro/registroF";
+					}
 			foroService.saveForo(foro);
 			status.setComplete();
-		} catch (Exception e) {
+		} 
+		
+		catch (Exception e) {
 			// TODO: handle exception
 		}
 
@@ -77,6 +91,12 @@ public class ForoController {
 		}
 
 		return "foro/listF";
+	}
+	
+	@GetMapping("/foros/delete/{id}")
+	public String deleteForo(@PathVariable Long id) {
+		foroService.deleteForoById(id);
+		return "redirect:/";
 	}
 	
 }

@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -56,12 +57,19 @@ public class ComentarioController {
 	@PostMapping("/comentarios")
 	public String registrarComentario(@Validated @ModelAttribute Comentario comentario, BindingResult result, Model model,
 			SessionStatus status) {
+		String descripcion = comentario.getDescripcion();
 		try {
 			if (result.hasErrors()) {
 				model.addAttribute("listaForos", listaForos);
 				model.addAttribute("listaEstudiantes", listaEstudiantes);
 				return "comentario/registroC";
 			}
+			if(descripcion.contains("droga") || descripcion.contains("alcohol")|| descripcion.contains("fiesta")
+					|| descripcion.contains("sexo") || descripcion.contains("relaciones")	|| descripcion.contains("estupidos")
+							) {
+						model.addAttribute("mensaje3", "No se puede realizar este comentario porque es inapropiado");
+						return "comentario/registroC";
+					}
 			comentarioService.saveComentario(comentario);
 			status.setComplete();
 		} catch (Exception e) {
@@ -70,5 +78,9 @@ public class ComentarioController {
 
 		return "redirect:/";
 	}
-	
+	@GetMapping("/comentarios/delete/{id}")
+	public String deleteComentario(@PathVariable Long id) {
+		comentarioService.deleteComentarioById(id);
+		return "redirect:/";
+	}
 }

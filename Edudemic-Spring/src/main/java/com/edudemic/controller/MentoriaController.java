@@ -63,24 +63,4 @@ public class MentoriaController {
 		return "/estudiante/mentoriaE";
 	}
 	
-	@GetMapping("/listar/mentoria/estudiante")
-	public String listaHorario(Model model) 
-	{
-		Mentoria mentoria = new Mentoria();
-		model.addAttribute("mentoria", mentoria);
-		model.addAttribute("mentorias", mentoriaService.listarMentoria());
-		return "/mentoria/listaH";
-	}
-	
-	@PostMapping("/mentorias/buscar")
-	public String buscarTituloLibro(Model model, @ModelAttribute Mentoria mentoria) {
-		try {
-			model.addAttribute("mentorias", mentoriaService.buscarMentoria(mentoria.getFecha()));
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}		
-		
-		return "mentoria/listaH";
-	}
-	
 }

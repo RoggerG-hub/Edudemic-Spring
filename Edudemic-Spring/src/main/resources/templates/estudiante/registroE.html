@@ -7,6 +7,12 @@
 	<th:block th:include="fragments/navbarAdmin"></th:block>
 
 	<div class="container">
+				<div th:object="${estudiante}" th:remove="tag">
+					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+						role="alert">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+					</ul>
+				</div>
 		<form th:action="@{/estudiantes}" th:object="${estudiante}"
 			method="POST">
 			<br></br>
@@ -16,14 +22,23 @@
 				<div class="col">
 					<div class="form-outline">
 						<input type="text" id="form6Example1" class="form-control"
-							name="nombres" th:field="*{nombres}" /> <label
-							class="form-label" for="form6Example1">Nombres</label>
+							name="nombres" th:field="*{nombres}" th:errorclass="form-control alert-danger" />
+							<small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('nombres')}"
+								th:errors="*{nombres}"></small>
+							 <label class="form-label" for="form6Example1">Nombres</label>
 					</div>
 				</div>
 				<div class="col">
 					<div class="form-outline">
 						<input type="text" id="form6Example2" class="form-control"
-							name="apellidos" th:field="*{apellidos}" /> <label
+							name="apellidos" th:field="*{apellidos}" th:errorclass="form-control alert-danger" />
+							<small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('apellidos')}"
+								th:errors="*{apellidos}"></small>
+							 <label
 							class="form-label" for="form6Example2">Apellidos</label>
 					</div>
 				</div>
@@ -31,38 +46,43 @@
 
 			<!-- Text input -->
 			<div class="form-outline mb-4">
-				<input type="text" id="form6Example3" class="form-control" name="edad" th:field="*{edad}" /> <label
-					class="form-label" for="form6Example3">Edad</label>
+				<input type="text" id="form6Example3" class="form-control"
+					name="edad" th:field="*{edad}" /> <label class="form-label"
+					for="form6Example3">Edad</label>
 			</div>
 
 			<!-- Text input -->
 			<div class="form-outline mb-4">
 				<input type="text" id="form6Example4" class="form-control"
-					name="dni" th:field="*{dni}" /> <label class="form-label"
+					name="dni" th:field="*{dni}" th:errorclass="form-control alert-danger"/><small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('dni')}"
+								th:errors="*{dni}"></small>	 <label class="form-label"
 					for="form6Example4">Dni</label>
 			</div>
-
-			<!-- Email input -->
+			
 			<div class="form-outline mb-4">
-				<input type="email" id="form6Example5" class="form-control"
-					name="correo" th:field="*{correo}" /> <label class="form-label"
-					for="form6Example5">Email</label>
+  				<input type="password" id="typePassword" class="form-control" th:field="*{password}"/>
+ 				 <label class="form-label" for="typePassword">Password</label>
 			</div>
-			<!-- Number input -->
 			<div class="form-outline mb-4">
-				<input type="number" id="form6Example6" class="form-control"
-					name="telefono" th:field="*{telefono}" /> <label
-					class="form-label" for="form6Example6">Telefono</label>
+				<input type="text" id="form6Example4" class="form-control"
+					name="dni" th:field="*{grado}" th:errorclass="form-control alert-danger" /> 
+					<small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('grado')}"
+								th:errors="*{grado}"></small>	
+					<label class="form-label"
+					for="form6Example4">Grado</label>
 			</div>
-
 			<div class="form-outline mb-4">
-				<input
-					type="date" id="start" class="form-control" value="2022-07-22"
-					min="1990-01-01" max="2022-12-31" name="fecha" th:field="*{fecha}">
-					<label class="form-label" for="start">Fecha</label> 
+				<label class="form-label" for="lista">Rol</label> 
+				<select
+							class="custom-select custom-select-sm " name="rol" id="lista">
+							<option th:each="rol :${roles}" th:value="${rol.id}"
+							th:text="${rol.authority}" />
+							</select>
 			</div>
-
-
 			<!-- Submit button -->
 			<button type="submit" class="btn btn-primary btn-block mb-4">Registrar</button>
 

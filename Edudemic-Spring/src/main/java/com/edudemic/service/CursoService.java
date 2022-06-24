@@ -25,8 +25,4 @@ public class CursoService {
 	{
 		return cursoRepository.findById(id).get();
 	}
-	public List<Curso> buscarCurso(String nombre)
-	{
-		return cursoRepository.buscarCursoByNombre(nombre);
-	}
 }

@@ -11,6 +11,6 @@ public interface LibroRepository extends JpaRepository<Libro, Long>{
 	@Query("FROM Libro l ORDER BY l.titulo ASC")
     public List<Libro> findAllSortByTittle();
 	
-	@Query("SELECT l FROM Libro l  WHERE l.titulo LIKE %?1%")
+	@Query("SELECT l FROM Libro l  WHERE l.titulo=?1")
 	List<Libro> buscarLibroByTitulo(String titulo);
 }

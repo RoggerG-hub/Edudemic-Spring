@@ -1,20 +1,27 @@
 package com.edudemic.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.edudemic.entities.Estudiante;
 import com.edudemic.service.EstudianteService;
+import com.edudemic.service.RolService;
 
 @Controller
 public class EstudianteController {
 	private EstudianteService estudianteService;
-	public EstudianteController(EstudianteService estudianteService) 
+	private RolService rolService;
+
+	public EstudianteController(EstudianteService estudianteService,RolService rolService) 
 	{
 		this.estudianteService = estudianteService;
+		this.rolService=rolService;
 	}
 	@GetMapping("/lista")
 	public String lista(){
@@ -25,13 +32,21 @@ public class EstudianteController {
 	{
 		Estudiante estudiante = new Estudiante();
 		model.addAttribute("estudiante",estudiante);
+		model.addAttribute("roles", rolService.listarRoles());
+
 		return "/estudiante/registroE";
 	}
 	@PostMapping("/estudiantes")
-	public String registrarEstudiante(@ModelAttribute("estudiante") Estudiante estudiante) 
+	public String registrarEstudiante(@Valid @ModelAttribute("estudiante") Estudiante estudiante, BindingResult result) 
 	{
-		estudianteService.registrarEstudiante(estudiante);
-		return "redirect:/";
+		if(result.hasErrors()) 
+		{
+			return "redirect:/registro/estudiante";
+		}else 
+		{
+			estudianteService.registrarEstudiante(estudiante);
+			return "redirect:/lista/estudiante";
+		}
 	}
 	@GetMapping("/lista/estudiante")
 	public String listarEstudiante(Model model) {

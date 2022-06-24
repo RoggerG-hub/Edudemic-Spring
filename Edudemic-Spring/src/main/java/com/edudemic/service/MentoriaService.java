@@ -16,12 +16,10 @@ public class MentoriaService {
 	
 	private MentoriaRepository mentoriaRepository;
 	private RetoService retoService;
-	private ProfesorService profesorService;
-	public MentoriaService(MentoriaRepository mentoriaRepository,RetoService retoService, ProfesorService profesorService) 
+	public MentoriaService(MentoriaRepository mentoriaRepository,RetoService retoService) 
 	{
 		this.mentoriaRepository=mentoriaRepository;
 		this.retoService=retoService;
-		this.profesorService=profesorService;
 	}
 	public Mentoria registrarMentoria(Mentoria m) 
 	{
@@ -54,11 +52,6 @@ public class MentoriaService {
 			}
 			listaO.removeAll(listaM);
 		return listaO;
-	}
-	
-	public List<Mentoria> buscarMentoria(String fecha)
-	{
-		return mentoriaRepository.buscarMentoriaByFecha(fecha);
 	}
 	
 }

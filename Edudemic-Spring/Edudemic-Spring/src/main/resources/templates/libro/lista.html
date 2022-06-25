@@ -42,7 +42,7 @@
 								<span th:text="${categoria.nombre} + ' '">Item
 									description here...</span>
 							</th:block></td>
-						<td><a th:href="@{'/libros/show/' + ${libro.id}}"
+						<td><a th:href="@{'/libros/detalle/'+${libro.id}}"
 							class="btn btn-primary">Ver</a></td>
 					</tr>
 				</tbody>

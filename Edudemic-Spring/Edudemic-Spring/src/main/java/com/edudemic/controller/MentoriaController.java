@@ -59,6 +59,14 @@ public class MentoriaController {
 		return "/mentoria/listaM";
 	
 	}
+	@GetMapping("/listar/mentoria2")
+	public String listaMentoria2(Model model) 
+	{
+
+		model.addAttribute("mentorias",mentoriaService.listarMentoria());
+		return "/mentoria/listaME";
+	
+	}
 	@GetMapping("/mentoria/estudiante/{id}")
 	public String objetoMentoria(@PathVariable Long id,Model model) {
 	
@@ -70,7 +78,7 @@ public class MentoriaController {
 	{
 		Mentoria mentoria = new Mentoria();
 		model.addAttribute("mentoria", mentoria);
-		model.addAttribute("mentorias", mentoriaService.listarMentoria());
+		model.addAttribute("mentorias", mentoriaService.mentoriasInscripciones());
 		return "/mentoria/listaH";
 	}
 	

@@ -39,7 +39,8 @@ public class LoginController {
 	@PostMapping("/auth/registro")
 	public String registro(@Valid @ModelAttribute Usuario usuario, BindingResult result, Model model) 
 	{
-		if(result.hasErrors()) 
+
+		if(result.hasErrors() || usuarioService.validar(usuario.getDni())) 
 		{
 			return "redirect:/auth/registro";
 		}else 

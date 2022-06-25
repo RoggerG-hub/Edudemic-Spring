@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.edudemic.entities.Calificacion;
 import com.edudemic.entities.Categoria;
 import com.edudemic.entities.Libro;
+import com.edudemic.service.CalificacionService;
 import com.edudemic.service.CategoriaService;
 import com.edudemic.service.LibroService;
 
@@ -24,11 +26,13 @@ public class LibroController {
 	private LibroService libroService;
 	private CategoriaService categoriaService;
 	private List<Categoria> listaCategorias = new ArrayList<>();
+	private CalificacionService calificacionService;
 
-	public LibroController(LibroService libroService, CategoriaService categoriaService) {
+	public LibroController(LibroService libroService, CategoriaService categoriaService, CalificacionService calificacionService) {
 
 		this.libroService = libroService;
 		this.categoriaService = categoriaService;
+		this.calificacionService = calificacionService;
 	}
 
 	@GetMapping("/registro/libro")
@@ -120,5 +124,18 @@ public class LibroController {
 
 		return "libro/lista";
 	}
+	
+	@GetMapping("/libros/detalle/{id}")
+	public String vertLibroForm2(@PathVariable Long id, Model model) {
+		Libro st = libroService.getLibroById(id);
+		List<Calificacion> calificaciones=calificacionService.listarCalificacion();
+
+		model.addAttribute("libro", st);
+		model.addAttribute("calificaciones", calificaciones);
+
+
+		return "/calificacion/registroCali";
+	}
+	
 
 }

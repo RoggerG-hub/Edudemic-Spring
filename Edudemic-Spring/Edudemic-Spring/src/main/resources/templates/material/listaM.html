@@ -7,9 +7,9 @@
 	<th:block th:include="fragments/navbar"></th:block>
 
 	<div class="container">
-<br></br>
+		<br></br>
 		<div class="card">
-			<div class="card-header">Listado de mentorias</div>
+			<div class="card-header">Listado de materiales</div>
 			<div class="card-body">
 				<table class="table table-striped">
 					<thead>
@@ -21,20 +21,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="mentoria:${mentorias}">
-							<td th:text="${mentoria.descripcion}">Mark</td>
-							<td th:text="${mentoria.profesor.nombres}">@mdo</td>
-							<td><a th:href="@{'/lista/reto/nota/'+ ${mentoria.id}}"
-								class="btn btn-success">Ver</a></td>
+						<tr th:each="material:${materiales}">
+							<td th:text="${material.nombre}">Mark</td>
+							<td th:text="${material.descripcion}">Mark</td>
+							<td th:text="${material.enalce}">Mark</td>
+							<td th:text="${material.mentoria.descripcion}">Mark</td>
+							
+							
 								
-							<td><a th:href="@{'/lista/mentoria/material/'+ ${mentoria.id}}"
-								class="btn btn-success">Materiales</a></td>
+							
 							
 						</tr>
 
 					</tbody>
 				</table>
 			</div>
+			
 		</div>
 		<br></br>
 	</div>

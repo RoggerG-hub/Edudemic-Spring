@@ -16,10 +16,12 @@ public class MentoriaService {
 	
 	private MentoriaRepository mentoriaRepository;
 	private RetoService retoService;
-	public MentoriaService(MentoriaRepository mentoriaRepository,RetoService retoService) 
+	private InscripcionService inscripcionService;
+	public MentoriaService(MentoriaRepository mentoriaRepository,RetoService retoService,InscripcionService inscripcionService) 
 	{
 		this.mentoriaRepository=mentoriaRepository;
 		this.retoService=retoService;
+		this.inscripcionService=inscripcionService;
 	}
 	public Mentoria registrarMentoria(Mentoria m) 
 	{
@@ -59,5 +61,25 @@ public class MentoriaService {
 	public List<Mentoria> buscarMentoria(String fecha)
 	{
 		return mentoriaRepository.findByFechaContainingIgnoreCase(fecha);
+	}
+	public List<Mentoria> mentoriasInscripciones() 
+	{
+		List<Mentoria> listaM = new ArrayList<>();
+		List<Mentoria> listaO = mentoriaRepository.findAll();
+			for(int j=0;j<inscripcionService.listarInscripcion().size();j++) 
+			{
+
+				if(inscripcionService.listarInscripcion().get(j).getMentoria().getId()!=mentoriaRepository.findAll().get(j).getId()) 
+				{
+
+				}else 
+				{
+					listaM.add(mentoriaRepository.findAll().get(j));
+
+				}
+
+			}
+			listaO.removeAll(listaM);
+		return listaO;
 	}
 }

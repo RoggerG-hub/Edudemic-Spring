@@ -82,16 +82,20 @@ public class InscripcionController {
 	{
 		if(inscripcionService.validarInscripción(inscripcion)==0)
 		{inscripcionService.registrarInscripcion(inscripcion);
-		  return "redirect:/";
+		  return "index";
 		}
 		else
 		{
-			
 			model.addAttribute("mensaje", "El estudiante ya se inscribió en mentorias 3 veces");
 			return "/inscripcion/registroI";
 		}
 		
 	}
-	
+	@GetMapping("/lista/inscripcion/estudiante2/{id}")
+    public String listar(@PathVariable Long id,Model model) {
+
+        model.addAttribute("inscripcionE",inscripcionService.listaIns(id));
+        return "/inscripcion/listaIE";
+    }
 
 }

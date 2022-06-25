@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ import com.edudemic.entities.Rol;
 import com.edudemic.service.CursoService;
 import com.edudemic.service.ProfesorService;
 import com.edudemic.service.RolService;
+import com.edudemic.service.UsuarioService;
 
 
 @Controller
@@ -25,7 +27,8 @@ public class ProfesorController {
 	private ProfesorService profesorService;
 	private CursoService cursoService;
 	private RolService rolService;
-
+	@Autowired 
+	private UsuarioService usuarioService;
 	private List<Curso> listaCursos =new ArrayList<>();
 	public ProfesorController(ProfesorService profesorService,CursoService cursoService,RolService rolService) 
 	{
@@ -48,7 +51,7 @@ public class ProfesorController {
 	@PostMapping("/profesores")
 	public String registrarProfesor(@Valid @ModelAttribute("profesor") Profesor profesor, BindingResult result) 
 	{
-		if(result.hasErrors()) 
+		if(result.hasErrors() || usuarioService.validar(profesor.getDni())) 
 		{
 			return "redirect:/registro/profesor";
 		}else 

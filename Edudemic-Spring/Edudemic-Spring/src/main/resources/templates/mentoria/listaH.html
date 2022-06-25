@@ -14,7 +14,7 @@
 							type="text" class="form-control" id="buscar"
 							th:field="*{fecha}" 
 							required="required"
-							placeholder="Buscar curso"> 
+							placeholder="Buscar fecha"> 
 		</div>
 					
 					<button type="submit" class="btn btn-primary">
@@ -31,6 +31,7 @@
 							<th scope="col">Curso</th>
 							<th scope="col">Hora de Inicio</th>
 							<th scope="col">Hora de Fin</th>
+							<th scope="col">Inscribirse</th>
 
 						</tr>
 					</thead>
@@ -40,7 +41,9 @@
 							<td th:text="${mentoria.fecha}"></td>
 							<td th:text="${mentoria.profesor.curso.nombre}"></td>
 							<td th:text="${mentoria.horaI}"></td>
-							<td th:text="${mentoria.horaF}"></td>							
+							<td th:text="${mentoria.horaF}"></td>
+							<td><a th:href="@{'/registro/inscripciones/'+ ${mentoria.id}}"
+								class="btn btn-success">Inscribirse</a></td>							
 						</tr>
 
 					</tbody>

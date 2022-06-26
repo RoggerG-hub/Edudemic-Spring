@@ -162,7 +162,7 @@
 						<a class="dropdown-item" th:href="@{/lista/reto}">Lista</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" th:href="@{/registro/pregunta}">Registrar
-							pregunta</a> <a class="dropdown-item" href="#">Lista</a>
+							pregunta</a> 
 					</div></li>
 			</div>
 			<div sec:authorize="hasRole('ROLE_PROFESOR')">
@@ -174,7 +174,7 @@
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" th:href="@{/registro/mentoria}">Registrar</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" th:href="@{/listar/mentoria}">Lista</a>
+						<a class="dropdown-item" th:href="@{'/listar/mentoria/' +${session.usuario.id}}">Mis mentorias</a>
 						<div class="dropdown-divider"></div>
 					</div></li>
 			</div>

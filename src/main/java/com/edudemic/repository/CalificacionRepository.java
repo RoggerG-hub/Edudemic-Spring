@@ -12,7 +12,8 @@ import com.edudemic.entities.Calificacion;
 
 public interface CalificacionRepository extends JpaRepository<Calificacion, Long> {
 	
-	
+	@Query("SELECT i FROM Calificacion i WHERE i.libro.id=?1")
+    List<Calificacion> listaCalificacionxLibro(Long id);
 	
 	
 }

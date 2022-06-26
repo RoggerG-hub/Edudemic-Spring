@@ -126,16 +126,16 @@ public class LibroController {
 	}
 	
 	@GetMapping("/libros/detalle/{id}")
-	public String vertLibroForm2(@PathVariable Long id, Model model) {
-		Libro st = libroService.getLibroById(id);
-		List<Calificacion> calificaciones=calificacionService.listarCalificacion();
+    public String vertLibroForm2(@PathVariable Long id, Model model) {
+        Libro st = libroService.getLibroById(id);
+        List<Calificacion> calificaciones=calificacionService.listaCalificacionxLibro(id);
 
-		model.addAttribute("libro", st);
-		model.addAttribute("calificaciones", calificaciones);
+        model.addAttribute("libro", st);
+        model.addAttribute("calificaciones", calificaciones);
 
 
-		return "calificacion/registroCali";
-	}
+        return "calificacion/registroCali";
+    }
 	
 
 }

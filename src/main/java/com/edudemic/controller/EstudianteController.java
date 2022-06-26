@@ -88,7 +88,6 @@ public class EstudianteController {
 			try {
 	    			estudianteSeleccionado.setId(estudiante.getId());
 	    			estudianteSeleccionado.setApellidos(estudiante.getApellidos());
-	    			estudianteSeleccionado.setPassword(estudiante.getPassword());
 	    			estudianteSeleccionado.setDni(estudiante.getDni());
 	    			estudianteSeleccionado.setEdad(estudiante.getEdad());
 	    			estudianteSeleccionado.setNombres(estudiante.getNombres());

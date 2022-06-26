@@ -48,14 +48,14 @@ public class MentoriaController {
 	{
 		
 		mentoriaService.registrarMentoria(mentoria);
-		return "redirect:/listar/mentoria";
+		return "redirect:/index";
 	}
 	
-	@GetMapping("/listar/mentoria")
-	public String listaMentoria(Model model) 
+	@GetMapping("/listar/mentoria/{id}")
+	public String listaMentoria(@PathVariable Long id,Model model) 
 	{
 
-		model.addAttribute("mentorias",mentoriaService.listarMentoria());
+		model.addAttribute("mentorias",mentoriaService.listaMentoriaxProfesor(id));
 		return "mentoria/listaM";
 	
 	}

@@ -82,4 +82,8 @@ public class MentoriaService {
 			listaO.removeAll(listaM);
 		return listaO;
 	}
+	public List<Mentoria> listaMentoriaxProfesor(Long id)
+	{
+		return mentoriaRepository.listaMentoriasxProfesor(id);
+	}
 }

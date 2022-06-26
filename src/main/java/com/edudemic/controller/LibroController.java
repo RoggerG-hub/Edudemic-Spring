@@ -43,14 +43,14 @@ public class LibroController {
 
 		model.addAttribute("libro", libro);
 		model.addAttribute("listaCategorias", listaCategorias);
-		return "/libro/registroL";
+		return "libro/registroL";
 	}
 
 	@GetMapping("/listar/libro")
 	public String listarLibros(Model model) {
 		model.addAttribute("libros", libroService.getAllLibros());
 
-		return "/libro/listL";
+		return "libro/listL";
 	}
 
 	@PostMapping("/libros")
@@ -134,7 +134,7 @@ public class LibroController {
 		model.addAttribute("calificaciones", calificaciones);
 
 
-		return "/calificacion/registroCali";
+		return "calificacion/registroCali";
 	}
 	
 

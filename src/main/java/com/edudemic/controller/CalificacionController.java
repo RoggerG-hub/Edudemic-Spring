@@ -74,7 +74,7 @@ public class CalificacionController {
 		model.addAttribute("listaLibros",listaLibros);
 		
 		
-		return "/calificacion/registroCalificacion";
+		return "calificacion/registroCalificacion";
 	}
 	
 	
@@ -95,7 +95,7 @@ public class CalificacionController {
 					model.addAttribute("calificaciones",calificacionService.listarCalificacion());
 					model.addAttribute("listaEstudiantes",listaEstudiantes);
 					model.addAttribute("listaLibros",listaLibros);
-				   return "/calificacion/registroCali";
+				   return "calificacion/registroCali";
 				}
 			else
 			    {
@@ -107,7 +107,7 @@ public class CalificacionController {
 				model.addAttribute("listaLibros",listaLibros);
 	
 				    model.addAttribute("mensaje", "El estudiante ya calificó el libro");
-				    return "/calificacion/registroCalificacion";
+				    return "calificacion/registroCalificacion";
 			    }
 
 		

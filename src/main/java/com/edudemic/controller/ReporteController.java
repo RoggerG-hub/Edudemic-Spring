@@ -20,13 +20,13 @@ public class ReporteController {
 		
 		model.addAttribute("estudiantes",estudianteService.listaEstudiantes());
 
-		return "/reporte/estudianteR";
+		return "reporte/estudianteR";
 	}
 	@GetMapping("/reporte/mentoria")
 	public String reportPM (Model model)
 	{
 		model.addAttribute("reporteMentorias", reporteMentoriaService.reporteM());
 		
-		return "/reporte/mentoriaR";
+		return "reporte/mentoriaR";
 	}	
 }

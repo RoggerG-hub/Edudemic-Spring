@@ -47,13 +47,13 @@ public class MaterialController {
 	@GetMapping("/listar/material")
 	public String listaMentoria(Model model) {
 		model.addAttribute("materiales",materialService.listarMaterial());
-		return "/material/listaM";
+		return "material/listaM";
 	}
 	
 	@GetMapping("/lista/mentoria/material/{id}")
 	public String listaMaterialesMentoria(@PathVariable Long id,Model model) {
 		model.addAttribute("materiales",materialService.listarMaterialesMentoria(id));
-        return "/material/listaM";
+        return "material/listaM";
 		
 	}
 	

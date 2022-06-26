@@ -23,7 +23,7 @@ public class CategoriaController {
 	{
 		Categoria categoria = new Categoria();
 		model.addAttribute("categoria",categoria);
-		return "/categoria/registroCa";
+		return "categoria/registroCa";
 	}
 	@PostMapping("/categorias")
 	public String registrarCategoria(@ModelAttribute("categoria") Categoria categoria) 

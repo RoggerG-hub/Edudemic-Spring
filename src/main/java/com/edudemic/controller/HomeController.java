@@ -10,11 +10,11 @@ public class HomeController {
 	}
 	@GetMapping("/landing")
 	public String land(){
-		return "/landing/landing_page";
+		return "landing/landing_page";
 	}
 	@GetMapping("/nosotros")
 	public String nosotros(){
-		return "/landing/nosotros";
+		return "landing/nosotros";
 	}
 	@GetMapping("/admin")
 	public String admin(){

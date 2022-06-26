@@ -35,7 +35,7 @@ public class EstudianteController {
 	}
 	@GetMapping("/lista")
 	public String lista(){
-		return "/estudiante/listaE";
+		return "estudiante/listaE";
 	}
 	@GetMapping("/registro/estudiante")
 	public String registrarEstudianteForm(Model model) 
@@ -44,7 +44,7 @@ public class EstudianteController {
 		model.addAttribute("estudiante",estudiante);
 		model.addAttribute("roles", rolService.listarRoles());
 
-		return "/estudiante/registroE";
+		return "estudiante/registroE";
 	}
 	@PostMapping("/estudiantes")
 	public String registrarEstudiante(@Valid @ModelAttribute("estudiante") Estudiante estudiante, BindingResult result) 
@@ -64,7 +64,7 @@ public class EstudianteController {
 	@GetMapping("/lista/estudiante")
 	public String listarEstudiante(Model model) {
 		model.addAttribute("estudiantes",estudianteService.listaEstudiantes());
-		return "/estudiante/listaE";
+		return "estudiante/listaE";
 	}
 	@GetMapping("/estudiante/edit/{id}")
 	public String editEstudianteForm( @PathVariable("id") Long id, Estudiante estudiante,Model model) {
@@ -79,7 +79,7 @@ public class EstudianteController {
 			e.printStackTrace();
 		}
 
-		return "/estudiante/editarE";
+		return "estudiante/editarE";
 	}
 	
 	@GetMapping("/estudiante/guardar")
@@ -102,7 +102,7 @@ public class EstudianteController {
 	        	System.out.println(e.getMessage());
 				model.addAttribute("mensaje", "El estudiante no se modificó correctamente");
 	        }
-		return "/estudiante/editarE";
+		return "estudiante/editarE";
 	
 	}
 }

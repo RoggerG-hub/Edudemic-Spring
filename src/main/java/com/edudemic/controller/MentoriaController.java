@@ -39,7 +39,7 @@ public class MentoriaController {
 
 		model.addAttribute("mentoria",mentoria);
 		model.addAttribute("listaProfesores",listaProfesores);
-		return "/mentoria/registroM";
+		return "mentoria/registroM";
 	
 	}
 	
@@ -56,7 +56,7 @@ public class MentoriaController {
 	{
 
 		model.addAttribute("mentorias",mentoriaService.listarMentoria());
-		return "/mentoria/listaM";
+		return "mentoria/listaM";
 	
 	}
 	@GetMapping("/listar/mentoria2")
@@ -64,14 +64,14 @@ public class MentoriaController {
 	{
 
 		model.addAttribute("mentorias",mentoriaService.listarMentoria());
-		return "/mentoria/listaME";
+		return "mentoria/listaME";
 	
 	}
 	@GetMapping("/mentoria/estudiante/{id}")
 	public String objetoMentoria(@PathVariable Long id,Model model) {
 	
 		model.addAttribute("mentoriaE",mentoriaService.mentoriaObjeto(id));
-		return "/estudiante/mentoriaE";
+		return "estudiante/mentoriaE";
 	}
 	@GetMapping("/listar/mentoria/estudiante")
 	public String listaHorario(Model model) 
@@ -79,7 +79,7 @@ public class MentoriaController {
 		Mentoria mentoria = new Mentoria();
 		model.addAttribute("mentoria", mentoria);
 		model.addAttribute("mentorias", mentoriaService.mentoriasInscripciones());
-		return "/mentoria/listaH";
+		return "mentoria/listaH";
 	}
 	
 	@PostMapping("/mentorias/buscar")

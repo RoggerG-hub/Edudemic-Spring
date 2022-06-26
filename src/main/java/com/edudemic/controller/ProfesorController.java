@@ -46,7 +46,7 @@ public class ProfesorController {
 		model.addAttribute("profesor",profesor);
 		model.addAttribute("listaCursos",listaCursos);
 		model.addAttribute("roles", rolService.listarRoles());
-		return "/profesor/registroP";
+		return "profesor/registroP";
 	}
 	@PostMapping("/profesores")
 	public String registrarProfesor(@Valid @ModelAttribute("profesor") Profesor profesor, BindingResult result) 
@@ -65,6 +65,6 @@ public class ProfesorController {
 	@GetMapping("/lista/profesor")
 	public String listarEstudiante(Model model) {
 		model.addAttribute("profesores",profesorService.listarProfesor());
-		return "/profesor/listaP";
+		return "profesor/listaP";
 	}
 }

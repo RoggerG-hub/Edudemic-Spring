@@ -44,14 +44,14 @@ public class ComentarioController {
 		model.addAttribute("comentario", comentario);
 		model.addAttribute("listaForos", listaForos);
 		model.addAttribute("listaEstudiantes", listaEstudiantes);
-		return "/comentario/registroC";
+		return "comentario/registroC";
 	}
 	
 	@GetMapping("/listar/comentario")
 	public String listarComentarios(Model model) {
 		model.addAttribute("comentarios", comentarioService.getAllComentarios());
 
-		return "/comentario/listC";
+		return "comentario/listC";
 	}
 	
 	@PostMapping("/comentarios")

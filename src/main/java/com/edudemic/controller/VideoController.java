@@ -37,14 +37,14 @@ public class VideoController {
 		
 		model.addAttribute("video",video);
 		model.addAttribute("listaCategorias",listaCategorias);
-		return "/video/registroV";
+		return "video/registroV";
 	}
 	
 	@GetMapping("/list/video")
 	public String listarVideos(Model model) {
 		model.addAttribute("videos",videoService.getAllVideos());
 		
-		return "/video/list_videos";
+		return "video/list_videos";
 	}
 	@PostMapping("/videos")
 	public String registrarVideo(@ModelAttribute("video")Video video) {
@@ -62,6 +62,6 @@ public class VideoController {
 	public String listarVideosE(Model model) {
 		model.addAttribute("videos",videoService.getAllVideos());
 		
-		return "/video/lista";
+		return "video/lista";
 	}
 }

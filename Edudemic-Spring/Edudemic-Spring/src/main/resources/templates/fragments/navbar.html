@@ -128,10 +128,11 @@
 					</div></li>
 
 			</div>
-			<div sec:authorize="hasRole('ROLE_STUDENT')">
+
+            <div sec:authorize="hasRole('ROLE_STUDENT')">
 
                 <li class="nav-item"><a class="nav-link"
-                    th:href="@{'/lista/inscripcion/estudiante2/'+ ${session.usuario.id}}">Mis inscripciones</a></li>
+                    th:href="@{'/lista/inscripcion/estudiante2/'+ ${session.usuario.id}}">Inscripciones</a></li>
             </div>
 			<div sec:authorize="hasRole('ROLE_COLEGIO')">
 

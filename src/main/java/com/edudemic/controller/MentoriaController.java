@@ -48,7 +48,7 @@ public class MentoriaController {
 	{
 		
 		mentoriaService.registrarMentoria(mentoria);
-		return "redirect:/index";
+		return "redirect:/private/index";
 	}
 	
 	@GetMapping("/listar/mentoria/{id}")

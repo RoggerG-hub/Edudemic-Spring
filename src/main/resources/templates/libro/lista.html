@@ -38,10 +38,7 @@
 						<td th:text="${libro.id}">1</td>
 						<td th:text="${libro.titulo}">HAMP</td>
 						<td th:text="${libro.autor}">HAMP</td>
-						<td><th:block th:each="categoria : ${libro.categoria}">
-								<span th:text="${categoria.nombre} + ' '">Item
-									description here...</span>
-							</th:block></td>
+						<td th:text="${libro.categoria.nombre}">HAMP</td>
 						<td><a th:href="@{'/libros/detalle/'+${libro.id}}"
 							class="btn btn-primary">Ver</a></td>
 					</tr>

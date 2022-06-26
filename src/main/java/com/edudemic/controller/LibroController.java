@@ -76,7 +76,7 @@ public class LibroController {
 		Libro st = libroService.getLibroById(id);
 
 		model.addAttribute("libro", st);
-		model.addAttribute("categoriasList", listaCategorias);
+		model.addAttribute("listaCategorias", categoriaService.listarCategoria());
 
 		return "libro/update";
 	}

@@ -51,14 +51,14 @@ public class EstudianteController {
 	{
 		if(result.hasErrors() || usuarioService.validar(estudiante.getDni())) 
 		{
-			return "redirect:registro/estudiante";
+			return "redirect:/registro/estudiante";
 		}else 
 		{
 			List<Rol> nuevoList = rolService.listarStudent("ROLE_STUDENT");
 			
 			estudiante.setRol(nuevoList.get(0));
 			estudianteService.registrarEstudiante(estudiante);
-			return "redirect:lista/estudiante";
+			return "redirect:/lista/estudiante";
 		}
 	}
 	@GetMapping("/lista/estudiante")

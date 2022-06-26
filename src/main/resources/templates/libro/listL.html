@@ -31,7 +31,7 @@
       <td th:text="${libro.fPublicacion}">Otto</td>
       <td th:text="${libro.autor}">Otto</td>
       <td th:text="${libro.categoria.nombre}">@mdo</td>
-      <td th:text="${libro.enlace}">@mdo</td>
+	<td><a th:href="${libro.enlace}" target="_blank">Ir a enlace</a></td>
 							
 	<td><a th:href="@{'/libros/edit/'+ ${libro.id}}"
 								class="btn btn-success">Editar</a></td>

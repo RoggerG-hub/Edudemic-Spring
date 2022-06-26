@@ -15,8 +15,10 @@
 					<thead>
 						<tr>
 
+							<th scope="col">Material</th>
 							<th scope="col">Descripción</th>
-							<th scope="col">Profesor</th>
+							<th scope="col">Enlace</th>
+							<th scope="col">Descripción mentoria</th>
 
 						</tr>
 					</thead>
@@ -24,12 +26,8 @@
 						<tr th:each="material:${materiales}">
 							<td th:text="${material.nombre}">Mark</td>
 							<td th:text="${material.descripcion}">Mark</td>
-							<td th:text="${material.enalce}">Mark</td>
+							<td><a th:href="${material.enalce}" target="_blank">Ir a enlace</a></td>
 							<td th:text="${material.mentoria.descripcion}">Mark</td>
-							
-							
-								
-							
 							
 						</tr>
 

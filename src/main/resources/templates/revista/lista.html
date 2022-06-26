@@ -42,7 +42,9 @@
       <td th:text="${revista.editorial}">Otto</td>
       <td th:text="${revista.volumen}">Otto</td>
       <td th:text="${revista.categoria.nombre}">@mdo</td>
-      <td th:text="${revista.enlace}">Otto</td>
+      
+      <td><a th:href="${revista.enlace}" target="_blank">Ir a enlace</a></td>
+      
      
     </tr>
    

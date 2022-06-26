@@ -22,7 +22,7 @@ public class CursoController {
 	{
 		Curso curso = new Curso();
 		model.addAttribute("curso",curso);
-		return "/curso/registroC";
+		return "curso/registroC";
 	}
 	@PostMapping("/cursos")
 	public String registrarCurso(@ModelAttribute("curso") Curso curso) 
@@ -33,6 +33,6 @@ public class CursoController {
 	@GetMapping("/lista/curso")
 	public String listarEstudiante(Model model) {
 		model.addAttribute("cursos",cursoService.listarCurso());
-		return "/curso/listaC";
+		return "curso/listaC";
 	}
 }

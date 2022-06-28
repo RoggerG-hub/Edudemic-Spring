@@ -31,6 +31,7 @@ public class Calificacion {
 	@ManyToOne
 	@JoinColumn(name = "estudiante_id", nullable = false)
 	private Estudiante estudiante;
+	
 	@NotEmpty(message = "Ingrese un comentario")
 	@Column(name = "comentario", nullable = false, length = 100)
 	String comentario;

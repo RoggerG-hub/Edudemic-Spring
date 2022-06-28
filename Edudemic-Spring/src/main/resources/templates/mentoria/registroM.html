@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:include ="fragments/head"></th:block>
+<meta charset="UTF-8">
+
 <body>
-	<th:block th:include="fragments/navbarAdmin"></th:block>
+	<th:block th:include="fragments/navbar"></th:block>
 
 
 	<div class="container">
@@ -37,11 +39,11 @@
 			<div class="form-outline mb-4">
 				<input type="text" id="form6Example4" class="form-control"
 					name="dni" th:field="*{descripcion}" /> <label class="form-label"
-					for="form6Example4">Descripción</label>
+					for="form6Example4">DescripciÃ³n</label>
 			</div>
 			
-			
-   <div class="form-outline mb-4">
+
+  		 <div class="form-outline mb-4">
 				<label class="form-label" for="lista">Profesor</label> <select
 					class="custom-select custom-select-sm " name="profesor" id="lista">
 					<option th:each="profesor :${listaProfesores}" th:value="${profesor.id}"
@@ -63,7 +65,7 @@
 
 			<br></br>
 		</form>
-	
+	</div>
 	
 	<th:block th:include ="fragments/footer"></th:block>
 	<th:block th:include ="fragments/scripts"></th:block>

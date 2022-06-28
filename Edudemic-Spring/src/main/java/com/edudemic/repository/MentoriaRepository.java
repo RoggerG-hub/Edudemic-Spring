@@ -13,5 +13,7 @@ public interface MentoriaRepository extends JpaRepository<Mentoria, Long> {
 	
 	@Query("SELECT m FROM Mentoria m WHERE m.id=?1")
 	Mentoria objetoM(Long id);
-
+	List<Mentoria> findByFechaContainingIgnoreCase(String fecha);
+	@Query("SELECT m FROM Mentoria m WHERE m.profesor.id=?1")
+    List<Mentoria> listaMentoriasxProfesor(Long id);
 }

@@ -3,7 +3,7 @@
 <th:block th:include="fragments/head"></th:block>
 <meta charset="UTF-8">
 <body>
-	<th:block th:include="fragments/navbarAdmin"></th:block>
+	<th:block th:include="fragments/navbar"></th:block>
 
 	<div class="container">
 <form th:action="@{/cursos}" th:object="${curso}" method="POST">
@@ -22,10 +22,6 @@
     <textarea class="form-control" id="form4Example3" rows="4" name="descripcion" th:field="*{descripcion}"></textarea>
     <label class="form-label" for="form4Example3">Descripción</label>
   </div>
-
-
-
-
 
 
   <!-- Submit button -->

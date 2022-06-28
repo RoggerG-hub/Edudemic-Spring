@@ -33,13 +33,13 @@ public class PreguntaController {
 		this.listaRetos= retoService.listarReto();
 		model.addAttribute("pregunta",pregunta);
 		model.addAttribute("listaRetos",listaRetos);
-		return "/reto/registroP";
+		return "reto/registroP";
 	}
 	@PostMapping("/preguntas")
 	public String registrarPregunta(@ModelAttribute("pregunta") Pregunta pregunta) 
 	{
 		preguntaService.registrarPregunta(pregunta);
-		return "redirect:/";
+		return "index";
 	}
 	@PostMapping("/registrar/nuevo/pregunta")
 	public String registrarDoctor(@Validated @ModelAttribute Pregunta pregunta,BindingResult result, Model model) {		
@@ -48,7 +48,7 @@ public class PreguntaController {
 			this.listaRetos= retoService.listarReto();
 
 			model.addAttribute("listaRetos",listaRetos);
-			return "/reto/registroP";
+			return "reto/registroP";
 		}
 
 		rpta=preguntaService.registrarNuevo(pregunta);
@@ -67,6 +67,6 @@ public class PreguntaController {
 			model.addAttribute("listaRetos",listaRetos);
 		}
 		
-		return "/reto/registroP";
+		return "reto/registroP";
 	}
 }

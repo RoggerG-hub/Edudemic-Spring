@@ -36,27 +36,27 @@ public class RevistaController {
 		model.addAttribute("revista",revista);
 		model.addAttribute("listaCategorias",listaCategorias);
 		
-		return "/revista/registroR";
+		return "revista/registroR";
 	}
 	
 	@GetMapping("/listar/revista")
 	public String listarRevistas(Model model) {
 		model.addAttribute("revistas",revistaService.listarRevista());
 		
-		return "/revista/listR";
+		return "revista/listR";
 	}
 	@GetMapping("/listar/revista/estudiante")
 	public String listarRevistasEstudiante(Model model) {
 		model.addAttribute("revistas",revistaService.listarRevista());
 		
-		return "/revista/lista";
+		return "revista/lista";
 	}
 	
 	@PostMapping("/revistas")
 	public String registrarLibro(@ModelAttribute("revista")Revista revista) {
 		
 		revistaService.registrarRevista(revista);
-		return "redirect:/";
+		return "redirect:/listar/revista";
 	}
 	
 	

@@ -23,13 +23,13 @@ public class CategoriaController {
 	{
 		Categoria categoria = new Categoria();
 		model.addAttribute("categoria",categoria);
-		return "/categoria/registroCa";
+		return "categoria/registroCa";
 	}
 	@PostMapping("/categorias")
 	public String registrarCategoria(@ModelAttribute("categoria") Categoria categoria) 
 	{
 		categoriaService.registrarCategoria(categoria);
-		return "redirect:/";
+		return "redirect:/lista/categoria";
 	}
 	@GetMapping("/lista/categoria")
     public String showAllCategorias(Model model) {
@@ -37,9 +37,18 @@ public class CategoriaController {
         return "categoria/lista";
     }  
     
-    @GetMapping("/delete/{id}")
-    public String deleteCategoria(@PathVariable Long id) {
-        categoriaService.deleteCategoriaById(id);
-        return "redirect:/";
+	@GetMapping("/delete/{id}")
+    public String deleteCategoria( Model model, @PathVariable Long id) {
+        try {
+        	categoriaService.deleteCategoriaById(id);
+            
+        }catch (Exception e) {
+			System.out.println(e.getMessage());
+			model.addAttribute("mensaje", "La categoria no se puede eliminar");
+
+		}
+        model.addAttribute("categorias", categoriaService.listarCategoria());
+        return "categoria/lista";
+
     }
 }

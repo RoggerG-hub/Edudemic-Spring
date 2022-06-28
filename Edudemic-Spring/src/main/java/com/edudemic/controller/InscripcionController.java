@@ -1,4 +1,5 @@
 package com.edudemic.controller;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -43,13 +44,13 @@ public class InscripcionController {
 	public String listarInscripciones(Model model) {
 		
 		model.addAttribute("inscripciones",inscripcionService.listarInscripcion());
-		return "/inscripcion/listaI";
+		return "inscripcion/listaI";
 	}
 	@GetMapping("/lista/inscripcion/estudiante/{id}")
 	public String listarNotas(@PathVariable Long id,Model model) {
 	
 		model.addAttribute("inscripcionE",inscripcionService.listaIns(id));
-		return "/estudiante/notasE";
+		return "estudiante/notasE";
 	}
 	
 	@GetMapping("/registro/inscripciones/{id}")
@@ -73,7 +74,7 @@ public class InscripcionController {
 		attribute.addFlashAttribute("error", "Error: El id del cliente no existe");
 		
 		
-		return "/inscripcion/registroI";
+		return "inscripcion/registroI";
 	}
 	
 	@PostMapping("/inscripciones")
@@ -81,16 +82,20 @@ public class InscripcionController {
 	{
 		if(inscripcionService.validarInscripción(inscripcion)==0)
 		{inscripcionService.registrarInscripcion(inscripcion);
-		  return "redirect:/";
+		  return "index";
 		}
 		else
 		{
-			
 			model.addAttribute("mensaje", "El estudiante ya se inscribió en mentorias 3 veces");
-			return "/inscripcion/registroI";
+			return "inscripcion/registroI";
 		}
 		
 	}
-	
+	@GetMapping("/lista/inscripcion/estudiante2/{id}")
+    public String listar(@PathVariable Long id,Model model) {
+
+        model.addAttribute("inscripcionE",inscripcionService.listaIns(id));
+        return "inscripcion/listaIE";
+    }
 
 }

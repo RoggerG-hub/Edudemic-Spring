@@ -26,7 +26,7 @@
 							<td th:text="${video.nombre}">Mark</td>
 							<td th:text="${video.descripcion}">Otto</td>
 							<td th:text="${video.categoria.nombre}">@mdo</td>
-							<td th:text="${video.url}">@mdo</td>
+							<td><a th:href="${video.url}" target="_blank">Ir a enlace</a></td>
 						</tr>
 
 					</tbody>

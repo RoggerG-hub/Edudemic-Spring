@@ -2,10 +2,11 @@ package com.edudemic.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edudemic.entities.Inscripcion;
-import com.edudemic.entities.Libro;
+import com.edudemic.entities.Mentoria;
 import com.edudemic.repository.InscripcionRepository;
 @Service
 public class InscripcionService {
@@ -26,8 +27,6 @@ public class InscripcionService {
 	{
 		return inscripcionRepository.listaIns(id);
 	}
-	
-	
 	public Inscripcion getInscripcionById(Long id) {
 		return inscripcionRepository.findById(id).get();
 	}
@@ -58,8 +57,4 @@ public class InscripcionService {
 		contador=0;
 		return validar;
 	}
-	
-	
-	
-	
 }

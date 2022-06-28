@@ -55,6 +55,9 @@ public class CalificacionService {
 		return validar;
 	
 	}
-	
+	public List<Calificacion> listaCalificacionxLibro(Long id)
+    {
+        return calificacionRepository.listaCalificacionxLibro(id);
+    }
 	
 }

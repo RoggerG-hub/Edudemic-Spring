@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="fragments/head"></th:block>
 <body>
-	<th:block th:include="fragments/navbarAdmin"></th:block>
+	<th:block th:include="fragments/navbar"></th:block>
 
 	<div class="container">
 		<form th:action="@{/libros}" th:object="${libro}" method="POST">
@@ -42,6 +42,9 @@
 					class="form-text text-danger"
 					th:if="${#fields.hasErrors('enlace')}" th:errors="*{enlace}"></small>
 			</div>
+
+
+
 
 			<div class="form-outline mb-4">
 				<label class="form-label" for="lista">Categoria</label> <select

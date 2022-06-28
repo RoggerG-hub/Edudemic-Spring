@@ -3,6 +3,8 @@ package com.edudemic.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,30 +39,57 @@ public class MentoriaController {
 
 		model.addAttribute("mentoria",mentoria);
 		model.addAttribute("listaProfesores",listaProfesores);
-		return "/mentoria/registroM";
+		return "mentoria/registroM";
 	
 	}
 	
 	@PostMapping("/mentorias")
 	public String registrarMentoria(@ModelAttribute("mentoria") Mentoria mentoria) 
 	{
+		
 		mentoriaService.registrarMentoria(mentoria);
-		return "redirect:/";
+		return "redirect:/private/index";
 	}
 	
-	@GetMapping("/listar/mentoria")
-	public String listaMentoria(Model model) 
+	@GetMapping("/listar/mentoria/{id}")
+	public String listaMentoria(@PathVariable Long id,Model model) 
+	{
+
+		model.addAttribute("mentorias",mentoriaService.listaMentoriaxProfesor(id));
+		return "mentoria/listaM";
+	
+	}
+	@GetMapping("/listar/mentoria2")
+	public String listaMentoria2(Model model) 
 	{
 
 		model.addAttribute("mentorias",mentoriaService.listarMentoria());
-		return "/mentoria/listaM";
+		return "mentoria/listaME";
 	
 	}
 	@GetMapping("/mentoria/estudiante/{id}")
 	public String objetoMentoria(@PathVariable Long id,Model model) {
 	
 		model.addAttribute("mentoriaE",mentoriaService.mentoriaObjeto(id));
-		return "/estudiante/mentoriaE";
+		return "estudiante/mentoriaE";
+	}
+	@GetMapping("/listar/mentoria/estudiante")
+	public String listaHorario(Model model) 
+	{
+		Mentoria mentoria = new Mentoria();
+		model.addAttribute("mentoria", mentoria);
+		model.addAttribute("mentorias", mentoriaService.mentoriasInscripciones());
+		return "mentoria/listaH";
 	}
 	
+	@PostMapping("/mentorias/buscar")
+	public String buscarFecha(Model model, @ModelAttribute Mentoria mentoria) {
+		try {
+			model.addAttribute("mentorias", mentoriaService.buscarMentoria(mentoria.getFecha()));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}		
+		
+		return "mentoria/listaH";
+	}
 }

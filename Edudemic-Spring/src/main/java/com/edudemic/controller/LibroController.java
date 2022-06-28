@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.edudemic.entities.Calificacion;
 import com.edudemic.entities.Categoria;
 import com.edudemic.entities.Libro;
+import com.edudemic.service.CalificacionService;
 import com.edudemic.service.CategoriaService;
 import com.edudemic.service.LibroService;
 
@@ -24,11 +26,13 @@ public class LibroController {
 	private LibroService libroService;
 	private CategoriaService categoriaService;
 	private List<Categoria> listaCategorias = new ArrayList<>();
+	private CalificacionService calificacionService;
 
-	public LibroController(LibroService libroService, CategoriaService categoriaService) {
+	public LibroController(LibroService libroService, CategoriaService categoriaService, CalificacionService calificacionService) {
 
 		this.libroService = libroService;
 		this.categoriaService = categoriaService;
+		this.calificacionService = calificacionService;
 	}
 
 	@GetMapping("/registro/libro")
@@ -39,14 +43,14 @@ public class LibroController {
 
 		model.addAttribute("libro", libro);
 		model.addAttribute("listaCategorias", listaCategorias);
-		return "/libro/registroL";
+		return "libro/registroL";
 	}
 
 	@GetMapping("/listar/libro")
 	public String listarLibros(Model model) {
 		model.addAttribute("libros", libroService.getAllLibros());
 
-		return "/libro/listL";
+		return "libro/listL";
 	}
 
 	@PostMapping("/libros")
@@ -64,7 +68,7 @@ public class LibroController {
 			// TODO: handle exception
 		}
 
-		return "redirect:/";
+		return "redirect:/listar/libro";
 	}
 
 	@GetMapping("/libros/edit/{id}")
@@ -72,7 +76,7 @@ public class LibroController {
 		Libro st = libroService.getLibroById(id);
 
 		model.addAttribute("libro", st);
-		model.addAttribute("categoriasList", listaCategorias);
+		model.addAttribute("listaCategorias", categoriaService.listarCategoria());
 
 		return "libro/update";
 	}
@@ -92,7 +96,7 @@ public class LibroController {
 		// guardar el libro actualizado
 		libroService.updateLibro(existentLibro);
 
-		return "redirect:/";
+		return "redirect:/listar/libro";
 
 	}
 
@@ -107,7 +111,7 @@ public class LibroController {
 	@GetMapping("/libros/delete/{id}")
 	public String deleteLibro(@PathVariable Long id) {
 		libroService.deleteLibroById(id);
-		return "redirect:/";
+		return "redirect:/listar/libro";
 	}
 
 	@PostMapping("/libros/buscar")
@@ -120,17 +124,18 @@ public class LibroController {
 
 		return "libro/lista";
 	}
-
 	
 	@GetMapping("/libros/detalle/{id}")
-	public String vertLibroForm2(@PathVariable Long id, Model model) {
-		Libro st = libroService.getLibroById(id);
+    public String vertLibroForm2(@PathVariable Long id, Model model) {
+        Libro st = libroService.getLibroById(id);
+        List<Calificacion> calificaciones=calificacionService.listaCalificacionxLibro(id);
 
-		model.addAttribute("libro", st);
+        model.addAttribute("libro", st);
+        model.addAttribute("calificaciones", calificaciones);
 
-		return "/calificacion/registroCali";
-	}
+
+        return "calificacion/registroCali";
+    }
 	
-	
-	
+
 }

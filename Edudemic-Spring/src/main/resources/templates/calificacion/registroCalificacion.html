@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:include ="fragments/head"></th:block>
 <body>
-	<th:block th:include="fragments/navbarAdmin"></th:block>
+	<th:block th:include="fragments/navbar"></th:block>
 
 
 	<div class="container">
@@ -28,30 +28,33 @@
 	</div>
 	
 	
-	
+	<small class="form-text text-danger" th:if="${#fields.hasErrors('estrellas')}"
+					th:errors="*{estrellas}"></small>
 	<div class="form-outline mb-4">
 				<input type="number" id="form6Example6" class="form-control"
 					name="estrellas" th:field="*{estrellas}" /> <label
-					class="form-label" for="form6Example6">Estrellas</label><small
-					class="form-text text-danger" th:if="${#fields.hasErrors('estrellas')}"
-					th:errors="*{estrellas}"></small>
+					class="form-label" for="form6Example6">Estrellas</label>
 			</div>
 	
 	
 	
   	<br></br>
    
-			
+			<small class="form-text text-danger" th:if="${#fields.hasErrors('comentario')}"
+					th:errors="*{comentario}"></small>
 			<div class="form-group">
     <label for="exampleFormControlTextarea1">Comentario</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="*{comentario}"></textarea>
-    <small class="form-text text-danger" th:if="${#fields.hasErrors('comentario')}"
-					th:errors="*{comentario}"></small>
+    
   </div>
 			<br></br><br></br>
 			
 			
-			
+							
+<div class="alert alert-danger alert-dismissable" th:if="${mensaje != null}" >
+           <label th:text="${mensaje}"> </label> 
+           <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>	
 
 			
 	<!-- Submit button -->
@@ -59,13 +62,6 @@
 		
 		</form>
 	
-	
-					
-<div class="alert alert-danger alert-dismissable" th:if="${mensaje != null}" >
-           <label th:text="${mensaje}"> </label> 
-           <button type="button" class="close" data-dismiss="alert">&times;</button>
-    </div>
-    
 	
 
     </div>
